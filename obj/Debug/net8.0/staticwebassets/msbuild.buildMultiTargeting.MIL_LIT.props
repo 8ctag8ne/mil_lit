@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\MIL_LIT.props" />
+</Project>
