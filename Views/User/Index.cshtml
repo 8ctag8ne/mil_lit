@@ -1,0 +1,53 @@
+@model IEnumerable<MIL_LIT.User>
+
+<p>
+    <a asp-action="Create">Додати користувача</a>
+</p>
+<table class="table wr">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Login)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PasswordHash)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsAdmin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedAt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProfilePicture)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Login)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PasswordHash)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsAdmin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedAt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProfilePicture)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.UserId">Редагувати</a> |
+                <a asp-action="Details" asp-route-id="@item.UserId">Детальніше</a> |
+                <a asp-action="Delete" asp-route-id="@item.UserId">Видалити</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

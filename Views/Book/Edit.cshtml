@@ -1,0 +1,81 @@
+@model MIL_LIT.Book
+
+<h4>Book</h4>
+<hr />
+<div class="row wr">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="BookId" />
+            <div class="form-group">
+                <label asp-for="CreatedBy" class="control-label"></label>
+                <select asp-for="CreatedBy" class="form-control" asp-items="ViewBag.CreatedBy"></select>
+                <span asp-validation-for="CreatedBy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="Likes" class="form-control" type="hidden"/>
+            </div>
+            <div class="form-group">
+                <input asp-for="Saves" class="form-control" type="hidden"/>
+            </div>
+            <div class="form-group">
+                <label asp-for="SourceLink" class="control-label"></label>
+                <input asp-for="SourceLink" class="form-control" />
+                <span asp-validation-for="SourceLink" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="CreatedAt" class="form-control" type="hidden"/>
+            </div>
+            <div class="form-group">
+                <label asp-for="Filepath" class="control-label"></label>
+                <input asp-for="Filepath" class="form-control" />
+                <span asp-validation-for="Filepath" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GeneralInfo" class="control-label"></label>
+                <input asp-for="GeneralInfo" class="form-control" />
+                <span asp-validation-for="GeneralInfo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Author" class="control-label"></label>
+                <input asp-for="Author" class="form-control" />
+                <span asp-validation-for="Author" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CoverLink" class="control-label"></label>
+                <input asp-for="CoverLink" class="form-control" />
+                <span asp-validation-for="CoverLink" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TagIds" class="control-label">Категорії</label>
+                <select asp-for="TagIds" class ="form-control" asp-items="ViewBag.AllTags" multiple>
+                    @* @foreach (var item in ViewBag.AllTags)
+                    {
+                        if(Model.TagIds.Contains(int.Parse(item.Value)))
+                        {
+                            <option value="@item.Value" selected="selected"> @item.Text</option>
+                        } else
+                        {
+                            <option value="@item.Value">@item.Text</option>
+                        }
+                    } *@
+                </select>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary mt-3" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

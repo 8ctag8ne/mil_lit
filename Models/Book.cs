@@ -1,35 +1,49 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Mvc;
 
 namespace MIL_LIT;
 
 public partial class Book
 {
+    [Display(Name = "Назва")]
+    public string Name {get; set;} = null!;
+
     public int BookId { get; set; }
 
-    public int CreatedBy { get; set; }
+    [Display(Name = "Створено користувачем")]
+    public int? CreatedBy { get; set; }
 
+    [Display(Name = "Уподобали")]
     public int Likes { get; set; }
 
+    [Display(Name = "Зберегли")]
     public int Saves { get; set; }
 
-    public byte[] CreatedAt { get; set; } = null!;
+    [Display(Name = "Дата створення")]
+    public DateTime? CreatedAt { get; set; }
 
-    public string Sourcelink { get; set; } = null!;
-
-    public byte[]? CoverImage { get; set; }
+    public string SourceLink { get; set; } = null!;
 
     public string? Filepath { get; set; }
 
+    [Display(Name = "Опис")]
     public string? GeneralInfo { get; set; }
 
-    public int TagId { get; set; }
-
+    [Display(Name = "Автор")]
     public string? Author { get; set; }
+
+    [Display(Name = "Обкладинка")]
+    public string? CoverLink { get; set; }
 
     public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();
 
-    public virtual User CreatedByNavigation { get; set; } = null!;
+    public virtual ICollection<Tag> Tags { get; set; } = new List<Tag>();
 
-    public virtual Tag Tag { get; set; } = null!;
+    public virtual User? CreatedByNavigation { get; set; }
+
+    [NotMapped]
+    public List<int> TagIds { get; set; } = new List<int>();
 }

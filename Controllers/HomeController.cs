@@ -6,11 +6,13 @@ namespace MIL_LIT.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
+    //private readonly ILogger<HomeController> _logger;
 
-    public HomeController(ILogger<HomeController> logger)
+    private  readonly MilLitDbContext _context;
+
+    public HomeController(MilLitDbContext context)
     {
-        _logger = logger;
+        _context = context;
     }
 
     public IActionResult Index()

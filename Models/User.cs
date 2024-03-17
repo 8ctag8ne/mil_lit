@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace MIL_LIT;
 
@@ -7,15 +8,21 @@ public partial class User
 {
     public int UserId { get; set; }
 
-    public string PasswordHash { get; set; } = null!;
-
+    [Display(Name = "Ім'я користувача")]
     public string Login { get; set; } = null!;
 
-    public byte[] ProfilePicture { get; set; } = null!;
+    [Required(ErrorMessage = "Поле не має бути порожнім")]
+    [Display(Name = "Хеш паролю")]
+    public string PasswordHash { get; set; } = null!;
 
+    [Display(Name = "Чи є адміністратором")]
     public bool IsAdmin { get; set; }
 
-    public byte[] CreatedAt { get; set; } = null!;
+    [Display(Name = "Дата створення")]
+    public DateTime? CreatedAt { get; set; }
+
+    [Display(Name = "Посилання на зображення профілю")]
+    public string? ProfilePicture { get; set; }
 
     public virtual ICollection<Book> Books { get; set; } = new List<Book>();
 

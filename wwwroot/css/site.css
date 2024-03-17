@@ -20,3 +20,41 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.tbody{
+  overflow: hidden;
+}
+
+.tr{
+  overflow: hidden;
+}
+.book-fixed-height{
+  height: 662px;
+  overflow: hidden;
+}
+.controls-margin{
+  margin-top: 5px;
+}
+.card{
+  background: #0b0c10;
+  border-color: #1f2833;
+  /* box-shadow: rgba(255, 255, 255, 0.15) 1.95px 1.95px 2.6px; */
+}
+.card:hover {
+  background: #1f2833;
+}
+body{
+  background-color: #0b0c10;
+  /* background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/f6890ec5-d71b-4497-be22-a9101ff32402/dfzeaq2-f1f7a23d-35a8-42df-bd9f-4ef89022f390.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2Y2ODkwZWM1LWQ3MWItNDQ5Ny1iZTIyLWE5MTAxZmYzMjQwMlwvZGZ6ZWFxMi1mMWY3YTIzZC0zNWE4LTQyZGYtYmQ5Zi00ZWY4OTAyMmYzOTAucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.MGfJJQ28l4s0TSW3U0tqwTe95dd_I_AmLuRmuw3-HMM");
+  background-repeat: repeat;
+  background-size: 50%; */
+}
+.wr{
+  color: white;
+}
+hr{
+  border: 3px solid white;
+}
+a{
+  color: #7e9ec3;
+}

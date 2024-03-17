@@ -1,0 +1,102 @@
+@model MIL_LIT.Book
+
+@{
+    IEnumerable<Tag> Tags = ViewData["Tags"] as IEnumerable<Tag>;
+}
+<div class="wr">
+    <h4>@Model.Name</h4>
+    <hr class="hr.book"/>
+    <div class="row">
+        <div class = "col-sm">
+            @if(Model.CoverLink != null)
+                {
+                    <a asp-action="Details" asp-route-id="@Model.BookId">
+                    <img height="450" width="300" class="fit-image"
+                    src = @Model.CoverLink
+                    alt = "Нема хліба, нема сала, Калі - Юга все забрала"
+                    />
+                    </a>
+                } else
+                {
+                    <a asp-action="Details" asp-route-id="@Model.BookId">
+                    <img height="450" width="300" class="fit-image"
+                    src = https://media.tenor.com/V0p2LFhu4wAAAAAe/hello-kitty-no.png
+                    alt = "Нема хліба, нема сала, Калі - Юга все забрала"
+                    />
+                    </a>
+                }
+        </div>
+        <div class="col-sm-9">
+            <table class="table wr">
+                <tbody>
+                    <tr>
+                        <th scope="row">Назва:</th>
+                        <td>@Model.Name</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Автор:</th>
+                        <td>@Model.Author</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">@Html.DisplayNameFor(model => model.CreatedAt):</th>
+                        <td>@Model.CreatedAt</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Створено користувачем:</th>
+                        <td>@Model.CreatedByNavigation.Login</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">@Html.DisplayNameFor(model => model.GeneralInfo):</th>
+                        <td>@Model.GeneralInfo</td>
+                    </tr>
+                    @if(Tags.Count() != 0)
+                    {
+                        <tr>
+                            <th scope="row">
+                                Категорії:
+                            </th>
+                            <td>
+                                @foreach(var tag in Tags)
+                                {
+                                    <a asp-action="Details"  asp-controller="Tag" asp-route-id="@tag.TagId" style="text-decoration:none">
+                                        <button class="btn btn-outline-light">
+                                            @tag.Name
+                                        </button>
+                                    </a>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3 d-flex my-2">
+            <a href = "@Model.SourceLink" class="w-100">
+                <button class="btn btn-outline-success w-100">
+                    Читати
+                </button>
+            </a>
+        </div>
+    </div>
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Likes)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Likes)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Saves)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Saves)
+        </dd>
+    </dl>
+    
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.BookId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

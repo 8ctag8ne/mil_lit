@@ -1,7 +1,11 @@
+using Microsoft.EntityFrameworkCore;
+using MIL_LIT;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<MilLitDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString(nameof(MilLitDbContext))));
 
 var app = builder.Build();
 

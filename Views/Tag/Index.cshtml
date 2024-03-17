@@ -1,0 +1,76 @@
+@model IEnumerable<MIL_LIT.Tag>
+
+<div class="row">
+    <div class="col-md-6">
+        <form class="d-flex" asp-action="Index" asp-controller="Tag" method="get">
+            <input name = "SearchString" class = "form-control me-1" type = "search" placeholder="Пошук" aria-label="Search">
+            <button class="btn btn-outline-light" type="submit">Знайти</button> 
+        </form>
+    </div>
+    <div class="col-md-6">
+        <a asp-action="Index" class="text-dark">Повернутись до повного списку</a>
+    </div>
+</div>
+<p>
+    <a asp-action="Create">Додати нову категорію</a>
+</p>
+<table class="table wr">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CoverImage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedAt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedByNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ParentTag)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.TagId" style="text-decoration:none">@item.Name</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CoverImage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedAt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedByNavigation.Login)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ParentTag.Name)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.TagId" style="text-decoration:none">
+                            <button class="btn btn-outline-warning">
+                                        <i class="bi bi-pencil-square"></i>
+                            </button>
+                        </a>
+                        <a asp-action="Details" asp-route-id="@item.TagId" style="text-decoration:none">
+                            <button class="btn btn-outline-success">
+                                <i class="bi bi-folder2-open"></i>
+                            </button>
+                        </a>
+                        <a asp-action="Delete" asp-route-id="@item.TagId" style="text-decoration:none">
+                            <button class="btn btn-outline-danger">
+                               <i class="bi bi-trash-fill"></i>
+                            </button>
+                        </a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -11,6 +11,13 @@ a {
   color: #0077cc;
 }
 
+img {
+  width: 200px;
+  height: 300px;
+  object-fit: cover;
+  /* You can also use cover instead of fill but they are different */
+}
+
 .btn-primary {
   color: #fff;
   background-color: #1b6ec2;
