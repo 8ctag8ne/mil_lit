@@ -38,7 +38,8 @@ namespace MIL_LIT.Controllers_
             {
                 return NotFound();
             }
-
+            ViewData["PublishedBooks"] = await _context.Books.Where(b=>b.CreatedBy == user.UserId).ToListAsync();
+            ViewData["LikedBooks"] = await _context.Likes.Where(l=>l.UserId == user.UserId).ToListAsync();
             return View(user);
         }
 
@@ -131,7 +132,7 @@ namespace MIL_LIT.Controllers_
             {
                 return NotFound();
             }
-
+            ViewData["PublishedBooks"] = await _context.Books.Where(b=>b.CreatedBy == user.UserId).ToListAsync();
             return View(user);
         }
 
@@ -143,7 +144,6 @@ namespace MIL_LIT.Controllers_
             var user = await _context.Users.FindAsync(id);
             if (user != null)
             {
-                var DeletedUser = await _context.Users.FirstOrDefaultAsync(t => t.UserId == 30);
                 var UserBooks = _context.Books.Where(book => book.CreatedBy == user.UserId);
                 var UserTags = _context.Tags.Where(tag => tag.CreatedBy == user.UserId);
                 var UserComments = _context.Comments.Where(com => com.UserId == user.UserId);
@@ -163,6 +163,19 @@ namespace MIL_LIT.Controllers_
                     comment.UserId = null;
                     _context.Update(comment);
                 }
+
+                var LikeList = await _context.Likes.Where(like => like.UserId == user.UserId).ToListAsync();
+                foreach(var like in LikeList)
+                {
+                    _context.Likes.Remove(like);
+                }
+
+                var SaveList = await _context.Saves.Where(save => save.UserId == user.UserId).ToListAsync();
+                foreach(var save in SaveList)
+                {
+                    _context.Saves.Remove(save);
+                }
+
                 _context.Users.Remove(user);
             }
 

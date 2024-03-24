@@ -2,21 +2,24 @@
     IEnumerable<Tag> Tags = ViewData["Tags"] as IEnumerable<Tag>;
     IEnumerable<Book> Books = ViewData["Books"] as IEnumerable<Book>;
 }
-<div class="row">
-    <div class="col-md-6">
-        <form class="d-flex" asp-action="Index for Tag" asp-controller="Tag" method="get">
-            <input name = "SearchString" class = "form-control me-1" type = "search" placeholder="Пошук" aria-label="Search">
+<div class="row mb-3">
+
+        <form class="d-flex" asp-action="Index" asp-controller="Tag" method="get">
+            <div class="col-lg-6 me-3">
+                    <input name = "SearchString" class = "form-control me-2" type = "search" placeholder="Пошук" aria-label="Search">
+            </div>
             <button class="btn btn-outline-light" type="submit">Знайти</button> 
         </form>
+</div>
+<div class="row">
+    <div class="col-lg-2 ">
+        <a asp-action="Index" class="btn btn-outline-secondary d-flex text-center mb-3" >Усі категорії</a>
     </div>
-    <div class="col-md-6">
-        <a asp-action="Index" class="text-dark">Повернутись до повного списку</a>
+    <div class="col-lg-2">
+        <a asp-action="Create" class = "btn btn-outline-success d-flex text-center mb-3">Додати нову категорію</a>
     </div>
 </div>
 
-<p>
-    <a asp-action="Create">Додати нову категорію</a>
-</p>
 @if(Tags.Count() == 0 && Books.Count() == 0)
 {
     <h4 class="wr">Дані відсутні</h4>
@@ -26,68 +29,78 @@ else
     if(Tags != null && Tags.Count() > 0)
     {
         <p><h5 class="wr">Категорії:</h5></p>
-        <table class="table wr">
-            <thead>
-                <tr>
-                    <th>
-                        Назва категорії
-                    </th>
-                    <th>
-                        Обкладинка
-                    </th>
-                    <th>
-                        Дата створення
-                    </th>
-                    <th>
-                        Створено користувачем
-                    </th>
-                    <th>
-                        Є підкатегорією
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-        @foreach (var tag in Tags) {
-                <tr>
-                    <td>
-                        <a asp-action="Details" asp-route-id="@tag.TagId" style="text-decoration:none">@tag.Name</a>
-                    </td>
-                    <td>
-                        @tag.CoverImage
-                    </td>
-                    <td>
-                        @tag.CreatedAt
-                    </td>
-                    <td>
-                        <a asp-action="Details" asp-controller="User" asp-route-id="@tag.CreatedByNavigation.UserId" style="text-decoration:none">
-                        @tag.CreatedByNavigation.Login
+        @foreach(var item in Tags)
+        {
+            <div class="card wr my-3" style="max-height: 160px;">
+                <div class="row no-gutters">
+                    <div class="col-sm-2">
+                    @if(item.CoverImage != null)
+                    {
+                        <a asp-action="Details" asp-route-id="@item.TagId">
+                        <img class="card-img" style="height: 160px"
+                        src = @item.CoverImage
+                        alt = "Нема хліба, нема сала, Калі - Юга все забрала"
+                        />
                         </a>
-                    </td>
-                    <td>
-                        @tag.ParentTag.Name
-                    </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@tag.TagId" style="text-decoration:none">
-                            <button class="btn btn-outline-warning">
-                                        <i class="bi bi-pencil-square"></i>
-                            </button>
+                    } else
+                    {
+                        <a asp-action="Details" asp-route-id="@item.TagId">
+                        <img  class="card-img" style="height: 160px"
+                        src = https://play-lh.googleusercontent.com/yLwRBTXYh_Y42Q9DBQDEMASnMyS0eVlSP57jWVubv4IZGQvKd80D8-FtDTOjF1BInSI=w240-h480-rw
+                        alt = "Нема хліба, нема сала, Калі - Юга все забрала"
+                        />
                         </a>
-                        <a asp-action="Details" asp-route-id="@tag.TagId" style="text-decoration:none">
-                            <button class="btn btn-outline-success">
-                                <i class="bi bi-folder2-open"></i>
-                            </button>
+                    }
+                    </div>
+                    <div class="col-sm-8">
+                    <div class="card-body">
+                        <a asp-action="Details" asp-route-id="@item.TagId" style="text-decoration:none"><h5 class="card-title">
+                            <strong>@item.Name</strong></h5>
                         </a>
-                        <a asp-action="Delete" asp-route-id="@tag.TagId" style="text-decoration:none">
-                            <button class="btn btn-outline-danger">
-                               <i class="bi bi-trash-fill"></i>
-                            </button>
+                        
+                        <p class="card-text">Сторив користувач: 
+                            <a asp-action="Details" asp-controller="User" asp-route-id="@item.CreatedBy" style="text-decoration:none">
+                            @Html.DisplayFor(modelItem => item.CreatedByNavigation.Login)
+                            </a>
+                        </p>
+                        <p class="card-text">
+                            Належить до категорії:
+                            <a asp-action="Index for tag" asp-controller="Tag" asp-route-id="@item.ParentTagId" style="text-decoration:none">
+                        @Html.DisplayFor(modelItem => item.ParentTag.Name)
                         </a>
-                    </td>
-                </tr>
+                        </p>
+                        <p class="card-text"><small class="text-muted">Дата створення: @Html.DisplayFor(modelItem => item.CreatedAt)</small></p>
+                        
+                    </div>
+                    </div>
+                    <div class="col-sm-2 align-self-center">
+                        <div class="row">
+                            <div class = "col-lg-4 text-center d-flex">
+                                <a asp-action="Edit" asp-route-id="@item.TagId" style="text-decoration:none">
+                                    <button class="btn btn-outline-warning">
+                                                <i class="bi bi-pencil-square"></i>
+                                    </button>
+                                </a>
+                            </div>
+                            <div class = "col-lg-4 text-center d-flex">
+                                <a asp-action="Details" asp-route-id="@item.TagId" style="text-decoration:none">
+                                    <button class="btn btn-outline-success">
+                                        <i class="bi bi-folder2-open"></i>
+                                    </button>
+                                </a>
+                            </div>
+                            <div class = "col-lg-4 text-center d-flex">
+                                <a asp-action="Delete" asp-route-id="@item.TagId" style="text-decoration:none">
+                                    <button class="btn btn-outline-danger">
+                                    <i class="bi bi-trash-fill"></i>
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         }
-            </tbody>
-        </table>
     }
     if(Books is not null && Books.Count() > 0)
     {
@@ -99,7 +112,7 @@ else
                     <div class="text-center">
                         @if(item.CoverLink != null)
                         {
-                            <a asp-action="Details" asp-route-id="@item.BookId">
+                            <a asp-action="Details" asp-controller="Book" asp-route-id="@item.BookId">
                             <img class="my-3 fit-image" height="300" width="200"
                             src = @item.CoverLink
                             alt = "Нема хліба, нема сала, Калі - Юга все забрала"
@@ -107,7 +120,7 @@ else
                             </a>
                         } else
                         {
-                            <a asp-action="Details" asp-route-id="@item.BookId">
+                            <a asp-action="Details" asp-controller="Book" asp-route-id="@item.BookId">
                             <img  class="my-3 fit-image" height="300" width="200"
                             src = https://media.tenor.com/V0p2LFhu4wAAAAAe/hello-kitty-no.png
                             alt = "Нема хліба, нема сала, Калі - Юга все забрала"
@@ -117,7 +130,7 @@ else
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">
-                            <a asp-action="Details" asp-route-id="@item.BookId" style="text-decoration:none">
+                            <a asp-action="Details" asp-controller="Book" asp-route-id="@item.BookId" style="text-decoration:none">
                                 @Html.DisplayFor(modelItem => item.Name)
                             </a>
                         </h5>
@@ -140,21 +153,21 @@ else
                         </p>
                         <div class="row">
                             <div class="col-4 text-center d-flex">
-                                <a asp-action="Edit" asp-route-id="@item.BookId" style="text-decoration:none" class="w-100">
+                                <a asp-action="Edit" asp-route-id="@item.BookId" asp-controller="Book" style="text-decoration:none" class="w-100">
                                     <button class="btn btn-outline-warning w-100">
                                         <i class="bi bi-pencil-square"></i>
                                     </button>
                                 </a>
                             </div>
                             <div class="col-4 text-center d-flex">
-                            <a asp-action="Details" asp-route-id="@item.BookId" style="text-decoration:none color:#808000;" class="w-100">
+                            <a asp-action="Details" asp-route-id="@item.BookId" asp-controller="Book" style="text-decoration:none color:#808000;" class="w-100">
                                 <button class="btn btn-outline-success w-100">
                                     <i class="bi bi-book"></i>
                                 </button>
                             </a>
                             </div>
                             <div class="col-4 text-center d-flex">
-                            <a asp-action="Delete" asp-route-id="@item.BookId" style="text-decoration:none" class="w-100">
+                            <a asp-action="Delete" asp-route-id="@item.BookId" asp-controller="Book" style="text-decoration:none" class="w-100">
                                 <button class="btn btn-outline-danger w-100">
                                     <i class="bi bi-trash-fill"></i>
                                 </button>

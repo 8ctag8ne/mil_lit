@@ -1,39 +1,60 @@
 @model MIL_LIT.User
-
+@{
+    IEnumerable<Book> Books = ViewData["PublishedBooks"] as IEnumerable<Book>;
+    IEnumerable<Like> Likes = ViewData["LikedBooks"] as IEnumerable<Like>;
+}
 <div>
-    <h4> @Html.DisplayFor(model => model.Login)</h4>
+    <h4 class="wr"> @Html.DisplayFor(model => model.Login)</h4>
     <hr />
-    <dl class="row wr">
-        @if(@Model.IsAdmin)
-        {
-            <p>
-                <dd class = "col-sm-2">
+    <div class="row wr">
+        <div class="col-md-3">
+            @if(Model.ProfilePicture != null)
+                {
+                    <img height="300" width="300" class="fit-image"
+                    src = @Model.ProfilePicture
+                    alt = "Нема хліба, нема сала, Калі - Юга все забрала"
+                    />
+                } else
+                {
+                    <img height="300" width="300" class="fit-image"
+                    src = https://www.survivorsuk.org/wp-content/uploads/2017/01/no-image.jpg
+                    alt = "Нема хліба, нема сала, Калі - Юга все забрала"
+                    />
+                }
+        </div>
+        <div class = "col-sm-4">
+            @if(Model.IsAdmin)
+            {
+                <p><strong>
                     Адміністратор
-                </dd>
-            </p>
-        } else
-        {
+                </strong></p>
+            } else
+            {
+                <p>
+                    <strong>
+                        Користувач
+                    </strong>
+                </p>
+            }
             <p>
-                <dd class = "col-sm-2">
-                    Користувач
-                </dd>
+                Дата реєстрації: @Model.CreatedAt
             </p>
-        }
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CreatedAt)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CreatedAt)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ProfilePicture)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ProfilePicture)
-        </dd>
-    </dl>
+        </div>
+    </div>
+    @if(Books!=null && Books.Count()>0)
+    {
+        <p><h5 class="wr">Опубліковані книги:</h5></p>
+            @foreach(var book in Books)
+            {
+                <a class="me-2 mb-2 wr" asp-action="Details"  asp-controller="Book" asp-route-id="@book.BookId" style="text-decoration:none">
+                    <button class="btn btn-outline-light">
+                        @book.Name
+                    </button>
+                </a>
+            }
+    }
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.UserId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model?.UserId" class="btn btn-outline-warning me-3 my-3">Редагувати</a>
+    <a asp-action="Index" class="btn btn-outline-secondary my-3">Повернутися до списку користувачів</a>
 </div>

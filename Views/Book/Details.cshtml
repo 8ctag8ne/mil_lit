@@ -20,7 +20,7 @@
                 {
                     <a asp-action="Details" asp-route-id="@Model.BookId">
                     <img height="450" width="300" class="fit-image"
-                    src = https://media.tenor.com/V0p2LFhu4wAAAAAe/hello-kitty-no.png
+                    src = https://www.survivorsuk.org/wp-content/uploads/2017/01/no-image.jpg
                     alt = "Нема хліба, нема сала, Калі - Юга все забрала"
                     />
                     </a>
@@ -43,7 +43,11 @@
                     </tr>
                     <tr>
                         <th scope="row">Створено користувачем:</th>
-                        <td>@Model.CreatedByNavigation.Login</td>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@Model.CreatedByNavigation.UserId" asp-controller="User" style="text-decoration:none">
+                                @Model.CreatedByNavigation.Login
+                            </a>
+                        </td>
                     </tr>
                     <tr>
                         <th scope="row">@Html.DisplayNameFor(model => model.GeneralInfo):</th>
@@ -97,6 +101,6 @@
     
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.BookId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model?.BookId" class="btn btn-outline-warning me-3 my-3">Редагувати</a>
+    <a asp-action="Index" class="btn btn-outline-secondary my-3">Повернутися до списку книг</a>
 </div>

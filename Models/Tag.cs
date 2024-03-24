@@ -4,12 +4,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MIL_LIT;
 
-public partial class Tag
+public partial class Tag : IValidatableObject
 {
     [Display(Name = "ID категорії")]
     public int TagId { get; set; }
 
     [Display(Name = "Назва категорії")]
+    [Required(ErrorMessage = "Назва не може бути порожньою.")]
     public string Name { get; set; } = null!;
 
     
@@ -32,4 +33,27 @@ public partial class Tag
 
     [Display(Name = "Є підкатегорією")]
     public virtual Tag? ParentTag { get; set; }
+
+    public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+    {
+        if(Name.Length > 50)
+        {
+            yield return new ValidationResult("Довжина назви не має перевищувати 50 символів.", new []{nameof(Name)});
+        }
+
+        if(string.IsNullOrEmpty(Name))
+        {
+            yield return new ValidationResult("Ім'я користувача не може бути порожнім.", new []{nameof(Name)});
+        }
+
+        String NameCharacters="+-!@#$%^&*?()_, .";
+
+        foreach(var ch in Name)
+        {
+            if(!char.IsLetter(ch) && !char.IsDigit(ch) && !NameCharacters.Contains(ch))
+            {
+                yield return new ValidationResult("Назва категорії може містити тільки літери цифри та розділові знаки", new []{nameof(Name)});
+            }
+        }
+    }
 }

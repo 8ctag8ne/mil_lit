@@ -37,7 +37,10 @@ namespace MIL_LIT.Controllers_
             if(!string.IsNullOrEmpty(SearchString))
             {
                 var Tags = _context.Tags.Where(t => t.Name.Contains(SearchString)).Include(t => t.CreatedByNavigation).Include(t => t.ParentTag);
-                var Books = _context.Books.Where(t => t.Name.Contains(SearchString)).Include(b => b.CreatedByNavigation);
+                var Books = _context.Books.Where(book => book.GeneralInfo.Contains(SearchString) 
+                                                    || book.Author.Contains(SearchString) 
+                                                    || book.CreatedByNavigation.Login.Contains(SearchString) 
+                                                    || book.Name.Contains(SearchString)).Include(b => b.CreatedByNavigation);
                 ViewData["Tags"] = Tags;
                 ViewData["Books"] = Books;
             } else
@@ -78,7 +81,7 @@ namespace MIL_LIT.Controllers_
         // GET: Tag/Create
         public IActionResult Create()
         {
-            ViewData["CreatedBy"] = new SelectList(_context.Users/*.Where(t => t.IsAdmin)*/, "UserId", "Login");
+            ViewData["CreatedBy"] = new SelectList(_context.Users.Where(t => t.IsAdmin), "UserId", "Login");
             ViewData["ParentTagId"] = new SelectList(_context.Tags, "TagId", "Name");
             return View();
         }
@@ -90,6 +93,10 @@ namespace MIL_LIT.Controllers_
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("TagId,Name,CreatedBy,CoverImage,ParentTagId")] Tag tag)
         {
+            if(_context.Tags.Any(t => t.Name == tag.Name && t.TagId!=tag.TagId))
+            {
+                ModelState.AddModelError(nameof(tag.Name), "Категорія з такою назвою уже існує.");
+            } else
             if (ModelState.IsValid)
             {
                 tag.CreatedAt = DateTime.UtcNow;
@@ -97,7 +104,7 @@ namespace MIL_LIT.Controllers_
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CreatedBy"] = new SelectList(_context.Users/*.Where(t => t.IsAdmin)*/, "UserId", "Login", tag.CreatedBy);
+            ViewData["CreatedBy"] = new SelectList(_context.Users.Where(t => t.IsAdmin), "UserId", "Login", tag.CreatedBy);
             ViewData["ParentTagId"] = new SelectList(_context.Tags, "TagId", "Name", tag.ParentTagId);
             return View(tag);
         }
@@ -115,7 +122,7 @@ namespace MIL_LIT.Controllers_
             {
                 return NotFound();
             }
-            ViewData["CreatedBy"] = new SelectList(_context.Users/*.Where(t => t.IsAdmin)*/, "UserId", "Login", tag.CreatedBy);
+            ViewData["CreatedBy"] = new SelectList(_context.Users.Where(t => t.IsAdmin), "UserId", "Login", tag.CreatedBy);
             ViewData["ParentTagId"] = new SelectList(_context.Tags, "TagId", "Name", tag.ParentTagId);
             return View(tag);
         }
@@ -132,6 +139,10 @@ namespace MIL_LIT.Controllers_
                 return NotFound();
             }
 
+            if(_context.Tags.Any(t => t.Name == tag.Name && t.TagId!=tag.TagId))
+            {
+                ModelState.AddModelError(nameof(tag.Name), "Категорія з такою назвою уже існує.");
+            } else
             if (ModelState.IsValid)
             {
                 try
@@ -202,14 +213,14 @@ namespace MIL_LIT.Controllers_
                     await DeleteConfirmed(childTag.TagId);
                 }
 
-                foreach(var book in BooksInBookTags)
-                {
-                    var booktags = await _context.BookTags.FirstOrDefaultAsync(booktag => (booktag.BookId == book.BookId && booktag.TagId != tag.TagId));
-                    if(booktags == null)
-                    {
-                        _context.Books.Remove(book);
-                    }
-                }
+                // foreach(var book in BooksInBookTags)
+                // {
+                //     var booktags = await _context.BookTags.FirstOrDefaultAsync(booktag => (booktag.BookId == book.BookId && booktag.TagId != tag.TagId));
+                //     if(booktags == null)
+                //     {
+                //         _context.Books.Remove(book);
+                //     }
+                // }
                 _context.Tags.Remove(tag);
             }
 

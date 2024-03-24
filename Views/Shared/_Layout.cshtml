@@ -13,27 +13,41 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3 wr">
             <div class="container-fluid">
-                <a class="navbar-brand text-light" asp-area="" asp-controller="Home" asp-action="Index">MIL_LIT</a>
+                <a class="navbar-brand text-light a-title" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src=~/resources/WhiteLogo.png class="image-fit" style="max-height: 50px;"/>
+                    <!--MIL_LIT-->
+
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Про нас</a>
+                        <li class="nav-item a-title">
+                            <b>
+                                <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Про нас</a>
+                            </b>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Book" asp-action="Index">Книги</a>
+                        <li class="nav-item a-title">
+                            <b>
+                                <a class="nav-link text-light" asp-area="" asp-controller="Book" asp-action="Index">Книги</a>
+                            </b>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Tag" asp-action="Index">Категорії</a>
+                        <li class="nav-item a-title">
+                            <b>
+                                <a class="nav-link text-light" asp-area="" asp-controller="Tag" asp-action="Index">Категорії</a>
+                            </b>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="User" asp-action="Index">Користувачі</a>
+                        <li class="nav-item a-title">
+                            <b>
+                                <a class="nav-link text-light" asp-area="" asp-controller="User" asp-action="Index">Користувачі</a>
+                            </b>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Корисна інформація</a>
+                        <li class="nav-item a-title">
+                            <b>
+                                <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Корисна інформація</a>
+                            </b>
                         </li>
                     </ul>
                 </div>

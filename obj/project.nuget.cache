@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "VLfBLTugDpRO3qKmsZ+FUL7y2Bnsa3HMldFYJXKdUfubavBy34cmG28yLKdxYEswSTvglkZZaahTPYiMDu7F5A==",
+  "dgSpecHash": "Jo5bYJ2JFicp6UjpII3J/g0fvp4LP91ljp8RtDmbGDL7AaHahkG1XX6LI7qDWNF/8sg3rR9nXemYsqyuGTaRdw==",
   "success": true,
   "projectFilePath": "C:\\Users\\nazar\\OneDrive\\Рабочий стол\\унік\\Прога\\MIL_LIT\\MIL_LIT.csproj",
   "expectedPackageFiles": [
@@ -78,9 +78,9 @@
     "C:\\Users\\nazar\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\5.1.1\\microsoft.data.sqlclient.sni.runtime.5.1.1.nupkg.sha512",
     "C:\\Users\\nazar\\.nuget\\packages\\microsoft.diasymreader\\2.0.0\\microsoft.diasymreader.2.0.0.nupkg.sha512",
     "C:\\Users\\nazar\\.nuget\\packages\\microsoft.dotnet.scaffolding.shared\\8.0.1\\microsoft.dotnet.scaffolding.shared.8.0.1.nupkg.sha512",
-    "C:\\Users\\nazar\\.nuget\\packages\\microsoft.entityframeworkcore\\8.0.2\\microsoft.entityframeworkcore.8.0.2.nupkg.sha512",
-    "C:\\Users\\nazar\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\8.0.2\\microsoft.entityframeworkcore.abstractions.8.0.2.nupkg.sha512",
-    "C:\\Users\\nazar\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\8.0.2\\microsoft.entityframeworkcore.analyzers.8.0.2.nupkg.sha512",
+    "C:\\Users\\nazar\\.nuget\\packages\\microsoft.entityframeworkcore\\8.0.3\\microsoft.entityframeworkcore.8.0.3.nupkg.sha512",
+    "C:\\Users\\nazar\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\8.0.3\\microsoft.entityframeworkcore.abstractions.8.0.3.nupkg.sha512",
+    "C:\\Users\\nazar\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\8.0.3\\microsoft.entityframeworkcore.analyzers.8.0.3.nupkg.sha512",
     "C:\\Users\\nazar\\.nuget\\packages\\microsoft.entityframeworkcore.design\\8.0.2\\microsoft.entityframeworkcore.design.8.0.2.nupkg.sha512",
     "C:\\Users\\nazar\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\8.0.2\\microsoft.entityframeworkcore.relational.8.0.2.nupkg.sha512",
     "C:\\Users\\nazar\\.nuget\\packages\\microsoft.entityframeworkcore.relational.design\\1.1.6\\microsoft.entityframeworkcore.relational.design.1.1.6.nupkg.sha512",

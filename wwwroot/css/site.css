@@ -58,3 +58,10 @@ hr{
 a{
   color: #7e9ec3;
 }
+img{
+  object-fit: contain;
+}
+
+.a-title:hover{
+  background-color: #1f2833;
+}

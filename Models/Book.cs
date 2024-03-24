@@ -6,9 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MIL_LIT;
 
-public partial class Book
+public partial class Book : IValidatableObject
 {
     [Display(Name = "Назва")]
+    [Required(ErrorMessage = "Назва не може бути порожньою.")]
     public string Name {get; set;} = null!;
 
     public int BookId { get; set; }
@@ -25,6 +26,8 @@ public partial class Book
     [Display(Name = "Дата створення")]
     public DateTime? CreatedAt { get; set; }
 
+    [Display(Name = "Джерело")]
+    [Required(ErrorMessage = "Посилання на джерело не може бути порожнім.")]
     public string SourceLink { get; set; } = null!;
 
     public string? Filepath { get; set; }
@@ -46,4 +49,22 @@ public partial class Book
 
     [NotMapped]
     public List<int> TagIds { get; set; } = new List<int>();
+
+    public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+    {
+        if(Author?.Length > 50)
+        {
+            yield return new ValidationResult("Ім'я автора не має містити більш, ніж 50 символів.", new []{nameof(Author)});
+        }
+
+        String NameCharacters="+-!@#$%^&*?()_, .";
+
+        foreach(var ch in Name)
+        {
+            if(!char.IsLetter(ch) && !char.IsDigit(ch) && !NameCharacters.Contains(ch))
+            {
+                yield return new ValidationResult("Назва книги може містити тільки літери цифри та розділові знаки", new []{nameof(Name)});
+            }
+        }
+    }
 }

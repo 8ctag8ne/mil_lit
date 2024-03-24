@@ -245,6 +245,34 @@
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
+      "Id": "C:\\Users\\nazar\\OneDrive\\Рабочий стол\\унік\\Прога\\MIL_LIT\\wwwroot\\resources\\CSS\\BookStyle.css",
+      "PackagePath": "staticwebassets\\resources\\CSS\\BookStyle.css"
+    },
+    {
+      "Id": "C:\\Users\\nazar\\OneDrive\\Рабочий стол\\унік\\Прога\\MIL_LIT\\wwwroot\\resources\\Cumic.png",
+      "PackagePath": "staticwebassets\\resources\\Cumic.png"
+    },
+    {
+      "Id": "C:\\Users\\nazar\\OneDrive\\Рабочий стол\\унік\\Прога\\MIL_LIT\\wwwroot\\resources\\Logo.png",
+      "PackagePath": "staticwebassets\\resources\\Logo.png"
+    },
+    {
+      "Id": "C:\\Users\\nazar\\OneDrive\\Рабочий стол\\унік\\Прога\\MIL_LIT\\wwwroot\\resources\\NoUser.png",
+      "PackagePath": "staticwebassets\\resources\\NoUser.png"
+    },
+    {
+      "Id": "C:\\Users\\nazar\\OneDrive\\Рабочий стол\\унік\\Прога\\MIL_LIT\\wwwroot\\resources\\WhiteLogo.png",
+      "PackagePath": "staticwebassets\\resources\\WhiteLogo.png"
+    },
+    {
+      "Id": "C:\\Users\\nazar\\OneDrive\\Рабочий стол\\унік\\Прога\\MIL_LIT\\wwwroot\\resources\\no-user-placeholder.webp",
+      "PackagePath": "staticwebassets\\resources\\no-user-placeholder.webp"
+    },
+    {
+      "Id": "C:\\Users\\nazar\\OneDrive\\Рабочий стол\\унік\\Прога\\MIL_LIT\\wwwroot\\resources\\placeholder.webp",
+      "PackagePath": "staticwebassets\\resources\\placeholder.webp"
+    },
+    {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.MIL_LIT.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

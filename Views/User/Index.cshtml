@@ -1,11 +1,14 @@
 @model IEnumerable<MIL_LIT.User>
 
 <p>
-    <a asp-action="Create">Додати користувача</a>
+    <a asp-action="Create" class="btn btn-outline-success my-3">Додати користувача</a>
 </p>
 <table class="table wr">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProfilePicture)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Login)
             </th>
@@ -13,39 +16,77 @@
                 @Html.DisplayNameFor(model => model.PasswordHash)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IsAdmin)
+                Тип
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.CreatedAt)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProfilePicture)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr>
+        <tr class="a-title">
             <td>
-                @Html.DisplayFor(modelItem => item.Login)
+                @if(item.ProfilePicture != null)
+                {
+                    <a asp-action="Details" asp-route-id="@item.UserId" style="text-decoration:none">
+                        <img class="fit-image" style="max-height:100px;"
+                        src = @item.ProfilePicture
+                        alt = "Нема хліба, нема сала, Калі - Юга все забрала"
+                        />
+                    </a>
+                } else
+                {
+                    <a asp-action="Details" asp-route-id="@item.UserId" style="text-decoration:none">
+                        <img class="fit-image" style="max-height:100px;"
+                        src = https://www.survivorsuk.org/wp-content/uploads/2017/01/no-image.jpg
+                        alt = "Нема хліба, нема сала, Калі - Юга все забрала"
+                        />
+                    </a>
+                }
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.UserId" style="text-decoration:none">
+                    @Html.DisplayFor(modelItem => item.Login)
+                </a>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PasswordHash)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsAdmin)
-            </td>
+            @if(item.IsAdmin)
+            {
+                <td>Адміністратор</td>
+            } else
+            {
+                <td>Користувач</td>
+            }
             <td>
                 @Html.DisplayFor(modelItem => item.CreatedAt)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ProfilePicture)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.UserId">Редагувати</a> |
-                <a asp-action="Details" asp-route-id="@item.UserId">Детальніше</a> |
-                <a asp-action="Delete" asp-route-id="@item.UserId">Видалити</a>
+                <div class="col-lg-4 align-self-center text-center">
+                    <a asp-action="Edit" asp-route-id="@item.UserId" style="text-decoration:none">
+                        <button class="btn btn-outline-warning mb-2">
+                            <i class="bi bi-pencil-square"></i>
+                        </button>
+                    </a>
+                </div>
+                <div class="col-lg-4 align-self-center text-center">
+                    <a asp-action="Details" asp-route-id="@item.UserId" style="text-decoration:none">
+                        <button class="btn btn-outline-success mb-2">
+                            <i class="bi bi-arrows-fullscreen"></i>
+                        </button>
+                    </a>
+                </div>
+                <div class="col-lg-4 align-self-center text-center">
+                    <a asp-action="Delete" asp-route-id="@item.UserId" style="text-decoration:none">
+                        <button class="btn btn-outline-danger mb-2">
+                            <i class="bi bi-trash-fill"></i>
+                        </button>
+                    </a>
+                </div>
+                
             </td>
         </tr>
 }

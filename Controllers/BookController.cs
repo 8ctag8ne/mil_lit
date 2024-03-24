@@ -61,7 +61,7 @@ namespace MIL_LIT.Controllers_
         // GET: Book/Create
         public IActionResult Create()
         {
-            ViewData["CreatedBy"] = new SelectList(_context.Users, "UserId", "Login");
+            ViewData["CreatedBy"] = new SelectList(_context.Users.Where(user=>user.IsAdmin), "UserId", "Login");
             ViewData["AllTags"] = new MultiSelectList(_context.Tags, "TagId", "Name");
             return View();
         }
@@ -73,7 +73,18 @@ namespace MIL_LIT.Controllers_
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Name,BookId,CreatedBy,SourceLink,Filepath,GeneralInfo,Author,CoverLink, TagIds")] Book book)
         {
-            if (ModelState.IsValid)
+            bool ok = true;
+            if(_context.Books.Any(b=>b.Name == book.Name && b.BookId!=book.BookId))
+            {
+                ModelState.AddModelError(nameof(book.Name), "Книга з такою назвою уже існує.");
+                ok = false;
+            }
+            if(_context.Books.Any(b=>b.SourceLink == book.SourceLink && b.BookId!=book.BookId))
+            {
+                ModelState.AddModelError(nameof(book.SourceLink), "Книга з таким джерелом уже існує.");
+                ok = false;
+            }
+            if (ok && ModelState.IsValid)
             {
                 book.TagIds = book.TagIds.Distinct().ToList();
                 book.Likes = 0;
@@ -113,7 +124,7 @@ namespace MIL_LIT.Controllers_
             }
             int[] tags = await _context.BookTags.Where(bt=>bt.BookId == book.BookId).Select(t=>t.TagId).ToArrayAsync();
             book.TagIds = tags.ToList();
-            ViewData["CreatedBy"] = new SelectList(_context.Users, "UserId", "Login", book.CreatedBy);
+            ViewData["CreatedBy"] = new SelectList(_context.Users.Where(user=>user.IsAdmin), "UserId", "Login", book.CreatedBy);
             ViewData["AllTags"] = new MultiSelectList(_context.Tags, "TagId", "Name", tags);
             return View(book);
         }
@@ -130,7 +141,18 @@ namespace MIL_LIT.Controllers_
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            bool ok = true;
+            if(_context.Books.Any(b=>b.Name == book.Name && b.BookId!=book.BookId))
+            {
+                ModelState.AddModelError(nameof(book.Name), "Книга з такою назвою уже існує.");
+                ok = false;
+            }
+            if(_context.Books.Any(b=>b.SourceLink == book.SourceLink && b.BookId!=book.BookId))
+            {
+                ModelState.AddModelError(nameof(book.SourceLink), "Книга з таким джерелом уже існує.");
+                ok = false;
+            }
+            if (ok && ModelState.IsValid)
             {
                 try
                 {
@@ -187,6 +209,9 @@ namespace MIL_LIT.Controllers_
             {
                 return NotFound();
             }
+            var TagList = await _context.BookTags.Where(b => b.BookId == book.BookId).Select(t=>t.TagId).ToListAsync();
+            var Tags = _context.Tags.Where(t => TagList.Contains(t.TagId)).Include(t => t.CreatedByNavigation).Include(t => t.ParentTag);
+            ViewData["Tags"] = Tags;
 
             return View(book);
         }
@@ -203,6 +228,24 @@ namespace MIL_LIT.Controllers_
                 foreach(var booktag in TagList)
                 {
                     _context.BookTags.Remove(booktag);
+                }
+
+                var LikeList = await _context.Likes.Where(like => like.BookId == book.BookId).ToListAsync();
+                foreach(var like in LikeList)
+                {
+                    _context.Likes.Remove(like);
+                }
+
+                var SaveList = await _context.Saves.Where(save => save.BookId == book.BookId).ToListAsync();
+                foreach(var save in SaveList)
+                {
+                    _context.Saves.Remove(save);
+                }
+                
+                var comments = await _context.Comments.Where(c=>c.BookId==book.BookId).ToListAsync();
+                foreach(var comment in comments)
+                {
+                    _context.Comments.Remove(comment);
                 }
                 _context.Books.Remove(book);
             }

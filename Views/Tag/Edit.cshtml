@@ -1,37 +1,38 @@
 @model MIL_LIT.Tag
 
-<h4>Tag</h4>
+<h4 class="wr">Редагувати дані про категорію</h4>
 <hr />
 <div class="row wr">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="TagId" />
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
+            <div class="form-group mb-2">
+                <label asp-for="Name" class="control-label">Назва категорії</label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="CreatedBy" class="control-label"></label>
+            <div class="form-group mb-2">
+                <label asp-for="CreatedBy" class="control-label">Створено користувачем</label>
                 <select asp-for="CreatedBy" class="form-control" asp-items="ViewBag.CreatedBy"></select>
                 <span asp-validation-for="CreatedBy" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="CoverImage" class="control-label"></label>
+            <div class="form-group mb-2">
+                <label asp-for="CoverImage" class="control-label">Обкладинка</label>
                 <input asp-for="CoverImage" class="form-control" />
                 <span asp-validation-for="CoverImage" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mb-2">
                 <input asp-for="CreatedAt" class="form-control" type="hidden"/>
             </div>
-            <div class="form-group">
-                <label asp-for="ParentTagId" class="control-label"></label>
+            <div class="form-group mb-2">
+                <label asp-for="ParentTagId" class="control-label">Належить до категорії</label>
                 <select asp-for="ParentTagId" class="form-control" asp-items="ViewBag.ParentTagId"></select>
                 <span asp-validation-for="ParentTagId" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+            <div class="form-group mb-2">
+                <input type="submit" value="Зберегти" class="btn btn-outline-success me-3 my-3" />
+                <a asp-action="Index" class="btn btn-outline-secondary my-3">Повернутися</a>
             </div>
         </form>
     </div>
