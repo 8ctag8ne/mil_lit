@@ -4,7 +4,7 @@
 <hr class="wr"/>
 <div class="row wr">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group mb-2">
                 <label asp-for="Name" class="control-label">Назва категорії</label>
@@ -16,9 +16,13 @@
                 <select asp-for="CreatedBy" class ="form-control" asp-items="ViewBag.CreatedBy"></select>
             </div>
             <div class="form-group mb-2">
-                <label asp-for="CoverImage" class="control-label">Обкладинка</label>
-                <input asp-for="CoverImage" class="form-control" />
+                <input asp-for="CoverImage" class="form-control" type="hidden"/>
                 <span asp-validation-for="CoverImage" class="text-danger"></span>
+            <div class="form-group mb-2">
+                <label asp-for="CoverFile" for="formFile" class="form-label">Обкладинка</label>
+                <input asp-for="CoverFile" class="form-control" type="file" id="formFile" accept="image/*">
+                <span asp-validation-for="CoverFile" class="text-danger"></span>
+            </div>
             </div>
             <div class="form-group mb-2">
                 <label asp-for="ParentTagId" class="control-label">Належить до категорії</label>

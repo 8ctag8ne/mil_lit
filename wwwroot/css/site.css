@@ -65,3 +65,16 @@ img{
 .a-title:hover{
   background-color: #1f2833;
 }
+
+.card-title-container{
+  height: 51px;
+  overflow: hidden;
+}
+
+.card-text-container{
+  height: 24px;
+  overflow: hidden;
+}
+.card-img{
+  align-items: center;
+}

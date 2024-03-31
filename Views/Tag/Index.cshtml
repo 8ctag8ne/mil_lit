@@ -21,24 +21,24 @@
 @foreach (var item in Model) {
     <div class="card wr my-3" style="max-height: 160px;">
         <div class="row no-gutters">
-            <div class="col-sm-2 align-self-center">
-            @if(item.CoverImage != null)
-            {
-                <a asp-action="Details" asp-route-id="@item.TagId">
-                <img class="card-img" style="max-height: 160px;"
-                src = @item.CoverImage
-                alt = "Нема хліба, нема сала, Калі - Юга все забрала"
-                />
-                </a>
-            } else
-            {
-                <a asp-action="Details" asp-route-id="@item.TagId">
-                <img  class="card-img" style="max-height: 160px"
-                src = https://play-lh.googleusercontent.com/yLwRBTXYh_Y42Q9DBQDEMASnMyS0eVlSP57jWVubv4IZGQvKd80D8-FtDTOjF1BInSI=w240-h480-rw
-                alt = "Нема хліба, нема сала, Калі - Юга все забрала"
-                />
-                </a>
-            }
+            <div class="col-sm-2">
+                @if(item.CoverImage != null)
+                {
+                    <a asp-action="Details" asp-route-id="@item.TagId">
+                    <img class="card-img fit-image" style="max-height: 160px; padding: 0; margin: 0;"
+                    src = @item.CoverImage
+                    alt = "Нема хліба, нема сала, Калі - Юга все забрала"
+                    />
+                    </a>
+                } else
+                {
+                    <a asp-action="Details" asp-route-id="@item.TagId">
+                    <img  class="card-img fit-image" style="max-height: 160px; padding: 0; margin: 0;"
+                    src = "~/resources/NoImage.png"
+                    alt = "Нема хліба, нема сала, Калі - Юга все забрала"
+                    />
+                    </a>
+                }
             </div>
             <div class="col-sm-8">
             <div class="card-body">

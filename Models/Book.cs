@@ -50,6 +50,9 @@ public partial class Book : IValidatableObject
     [NotMapped]
     public List<int> TagIds { get; set; } = new List<int>();
 
+    [NotMapped]
+    public IFormFile? CoverFile { get; set; }
+
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {
         if(Author?.Length > 50)

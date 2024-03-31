@@ -16,9 +16,11 @@ namespace MIL_LIT.Controllers_
     public class BookController : Controller
     {
         private readonly MilLitDbContext _context;
-        public BookController(MilLitDbContext context)
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        public BookController(MilLitDbContext context, IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         // GET: Book
@@ -53,8 +55,10 @@ namespace MIL_LIT.Controllers_
             }
             var TagList = await _context.BookTags.Where(b => b.BookId == book.BookId).Select(t=>t.TagId).ToListAsync();
             var Tags = _context.Tags.Where(t => TagList.Contains(t.TagId)).Include(t => t.CreatedByNavigation).Include(t => t.ParentTag);
+            var BookComments = _context.Comments.Where(c=>c.BookId == book.BookId).Include(c=>c.User);
             ViewData["Tags"] = Tags;
-
+            ViewData["Comments"] = BookComments;
+            ViewData["Users"] = new SelectList(_context.Users.ToList(), "UserId", "Login");
             return View(book);
         }
 
@@ -71,21 +75,27 @@ namespace MIL_LIT.Controllers_
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,BookId,CreatedBy,SourceLink,Filepath,GeneralInfo,Author,CoverLink, TagIds")] Book book)
+        public async Task<IActionResult> Create([Bind("Name,BookId,CreatedBy,SourceLink,Filepath,GeneralInfo,Author,CoverLink,TagIds,CoverFile")] Book book)
         {
-            bool ok = true;
             if(_context.Books.Any(b=>b.Name == book.Name && b.BookId!=book.BookId))
             {
                 ModelState.AddModelError(nameof(book.Name), "Книга з такою назвою уже існує.");
-                ok = false;
             }
             if(_context.Books.Any(b=>b.SourceLink == book.SourceLink && b.BookId!=book.BookId))
             {
                 ModelState.AddModelError(nameof(book.SourceLink), "Книга з таким джерелом уже існує.");
-                ok = false;
             }
-            if (ok && ModelState.IsValid)
+            if (ModelState.IsValid)
             {
+                if(book.CoverFile != null)
+                {
+                    string folder = "books/covers/";
+                    string FileNameWithoutSpaces = string.Join("", book.CoverFile.FileName.Split(" ", StringSplitOptions.RemoveEmptyEntries));
+                    folder +=  Guid.NewGuid().ToString() + "_" + FileNameWithoutSpaces;
+                    string ServerFolder = Path.Combine(_webHostEnvironment.WebRootPath, folder);
+                    await book.CoverFile.CopyToAsync(new FileStream(ServerFolder, FileMode.Create));
+                    book.CoverLink = "/"+folder;
+                }
                 book.TagIds = book.TagIds.Distinct().ToList();
                 book.Likes = 0;
                 book.Saves = 0;
@@ -134,28 +144,34 @@ namespace MIL_LIT.Controllers_
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Name,BookId,CreatedBy,Likes,Saves,CreatedAt,SourceLink,Filepath,GeneralInfo,Author,CoverLink,TagIds")] Book book)
+        public async Task<IActionResult> Edit(int id, [Bind("Name,BookId,CreatedBy,Likes,Saves,CreatedAt,SourceLink,Filepath,GeneralInfo,Author,CoverLink,TagIds,CoverFile")] Book book)
         {
             if (id != book.BookId)
             {
                 return NotFound();
             }
 
-            bool ok = true;
             if(_context.Books.Any(b=>b.Name == book.Name && b.BookId!=book.BookId))
             {
                 ModelState.AddModelError(nameof(book.Name), "Книга з такою назвою уже існує.");
-                ok = false;
             }
             if(_context.Books.Any(b=>b.SourceLink == book.SourceLink && b.BookId!=book.BookId))
             {
                 ModelState.AddModelError(nameof(book.SourceLink), "Книга з таким джерелом уже існує.");
-                ok = false;
             }
-            if (ok && ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 try
                 {
+                    if(book.CoverFile != null)
+                    {
+                        string folder = "books/covers/";
+                        string FileNameWithoutSpaces = string.Join("", book.CoverFile.FileName.Split(" ", StringSplitOptions.RemoveEmptyEntries));
+                        folder +=  Guid.NewGuid().ToString() + "_" + FileNameWithoutSpaces;
+                        string ServerFolder = Path.Combine(_webHostEnvironment.WebRootPath, folder);
+                        await book.CoverFile.CopyToAsync(new FileStream(ServerFolder, FileMode.Create));
+                        book.CoverLink = "/"+folder;
+                    }
                     var TagList = await _context.BookTags.Where(tag => tag.BookId == book.BookId).ToListAsync();
                     foreach(var booktag in TagList)
                     {

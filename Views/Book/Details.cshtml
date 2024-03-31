@@ -2,6 +2,7 @@
 
 @{
     IEnumerable<Tag> Tags = ViewData["Tags"] as IEnumerable<Tag>;
+    IEnumerable<MIL_LIT.Comment> Comments = ViewData["Comments"] as IEnumerable<MIL_LIT.Comment>;
 }
 <div class="wr">
     <h4>@Model.Name</h4>
@@ -20,7 +21,7 @@
                 {
                     <a asp-action="Details" asp-route-id="@Model.BookId">
                     <img height="450" width="300" class="fit-image"
-                    src = https://www.survivorsuk.org/wp-content/uploads/2017/01/no-image.jpg
+                    src = "~/resources/NoImage.png"
                     alt = "Нема хліба, нема сала, Калі - Юга все забрала"
                     />
                     </a>
@@ -44,9 +45,15 @@
                     <tr>
                         <th scope="row">Створено користувачем:</th>
                         <td>
-                            <a asp-action="Details" asp-route-id="@Model.CreatedByNavigation.UserId" asp-controller="User" style="text-decoration:none">
-                                @Model.CreatedByNavigation.Login
-                            </a>
+                            @if(Model.CreatedByNavigation == null)
+                            {
+                                <text>Користувач видалений</text>
+                            } else
+                            {
+                                <a asp-action="Details" asp-route-id="@Model.CreatedByNavigation.UserId" asp-controller="User" style="text-decoration:none">
+                                    @Model.CreatedByNavigation.Login
+                                </a>
+                            }
                         </td>
                     </tr>
                     <tr>
@@ -76,12 +83,26 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-3 d-flex my-2">
+        <div class="col-lg-3 d-flex my-2">
             <a href = "@Model.SourceLink" class="w-100">
                 <button class="btn btn-outline-success w-100">
                     Читати
                 </button>
             </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3 d-flex">
+                <button class="btn btn-outline-danger w-100 mb-2 bi-heart" data-toggle="button" aria-pressed="false" onclick="myFunction(this)">
+                    <!--<i class="bi bi-heart"></i>-->
+                </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3 d-flex">
+                <button class="btn btn-outline-info w-100 mb-2" data-toggle="button" aria-pressed="false">
+                    <i class="bi bi-download"></i>
+                </button>
         </div>
     </div>
     <dl class="row">
@@ -104,3 +125,72 @@
     <a asp-action="Edit" asp-route-id="@Model?.BookId" class="btn btn-outline-warning me-3 my-3">Редагувати</a>
     <a asp-action="Index" class="btn btn-outline-secondary my-3">Повернутися до списку книг</a>
 </div>
+<form method="post" asp-controller="Comment" asp-action="Create">
+    <div class="form-group">
+        <label class="control-label wr">Ваш коментар:</label>
+        <textarea name="Text" id="output" class="form-control commentinput"></textarea>
+        <!--<span asp-validation-for="Text" class="text-danger"></span>-->
+    </div>
+    <div class="form-group" >
+        <label class="control-label wr">Автор</label>
+        <select name="UserId" class ="form-control" asp-items="ViewBag.Users"></select>
+    </div>
+    <input asp-for="BookId" value="@Model.BookId" readonly hidden/>
+    <!--<span asp-validation-for="BookId" class="text-danger"></span>-->
+    <div class="form-group my-3">
+        <input type="submit" value="Додати коментар" class="btn btn-outline-info" />
+    </div>
+</form>
+
+@if(Comments != null && Comments.Count() > 0)
+{
+    <h5 class="wr"><p>Коментарі:</p></h5>
+    <table class="table wr">
+            <tbody>
+                @foreach(var comment in Comments)
+                {
+                    <tr>
+                        <td>
+                            @comment.User.Login
+                        </td>
+                        <td>
+                            @comment.Text
+                        </td>
+                        <td>
+                                <a asp-action="Edit" asp-controller="Comment" asp-route-id="@comment.CommentId" style="text-decoration:none">
+                                    <button class="btn btn-outline-warning mb-2 me-2">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </button>
+                                </a>
+                                <a asp-action="Details" asp-controller="Comment" asp-route-id="@comment.CommentId" style="text-decoration:none">
+                                    <button class="btn btn-outline-success mb-2 me-2">
+                                        <i class="bi bi-arrows-fullscreen"></i>
+                                    </button>
+                                </a>
+                            
+                                <a asp-action="Delete" asp-controller="Comment" asp-route-id="@comment.CommentId" style="text-decoration:none">
+                                    <button class="btn btn-outline-danger mb-2 me-2">
+                                        <i class="bi bi-trash-fill"></i>
+                                    </button>
+                                </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+    </table>
+}
+
+<script>
+    function myFunction(x) {
+        if(x.classList.contains("bi-heart"))
+        {
+            x.classList.remove("bi-heart");
+            x.classList.add("bi-heart-fill");
+        } else
+        {
+            x.classList.remove("bi-heart-fill");
+            x.classList.add("bi-heart");
+        }
+  //x.classList.toggle("btn-danger");
+}
+</script>

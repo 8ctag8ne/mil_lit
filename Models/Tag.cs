@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MIL_LIT;
 
@@ -33,6 +34,9 @@ public partial class Tag : IValidatableObject
 
     [Display(Name = "Є підкатегорією")]
     public virtual Tag? ParentTag { get; set; }
+
+     [NotMapped]
+    public IFormFile? CoverFile { get; set; }
 
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {

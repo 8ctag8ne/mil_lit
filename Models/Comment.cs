@@ -17,11 +17,11 @@ public partial class Comment
 
     public int? ParentCommentId { get; set; }
 
-    public virtual Book Book { get; set; } = null!;
+    public virtual Book? Book { get; set; }
 
-    public virtual ICollection<Comment> InverseParentComment { get; set; } = new List<Comment>();
+    public virtual ICollection<Comment>? InverseParentComment { get; set; } = new List<Comment>();
 
     public virtual Comment? ParentComment { get; set; }
 
-    public virtual User User { get; set; } = null!;
+    public virtual User? User { get; set; }
 }

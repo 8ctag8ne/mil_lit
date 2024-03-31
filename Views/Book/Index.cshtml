@@ -40,19 +40,19 @@
                         {
                             <a asp-action="Details" asp-route-id="@item.BookId">
                             <img  class="my-3 fit-image" height="300" width="200"
-                            src = https://www.survivorsuk.org/wp-content/uploads/2017/01/no-image.jpg
+                            src = "~/resources/NoImage.png"
                             alt = "Нема хліба, нема сала, Калі - Юга все забрала"
                             />
                             </a>
                         }
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">
+                        <h5 class="card-title card-title-container">
                             <a asp-action="Details" asp-route-id="@item.BookId" style="text-decoration:none">
                                 @Html.DisplayFor(modelItem => item.Name)
                             </a>
                         </h5>
-                        <p class="card-text">Автор: @item.Author</p>
+                        <p class="card-text card-text-container">Автор: @item.Author</p>
                         <p class="card-text">Дата додавання: @item.CreatedAt</p>
                         <p class="card-text">Уподобали: @item.Likes</p>
                         <p class="card-text">Зберегли: @item.Saves</p>

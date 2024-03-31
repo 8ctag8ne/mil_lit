@@ -12,10 +12,12 @@ namespace MIL_LIT.Controllers_
     public class TagController : Controller
     {
         private readonly MilLitDbContext _context;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public TagController(MilLitDbContext context)
+        public TagController(MilLitDbContext context, IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         // GET: Tag
@@ -91,7 +93,7 @@ namespace MIL_LIT.Controllers_
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TagId,Name,CreatedBy,CoverImage,ParentTagId")] Tag tag)
+        public async Task<IActionResult> Create([Bind("TagId,Name,CreatedBy,CoverImage,ParentTagId,CoverFile")] Tag tag)
         {
             if(_context.Tags.Any(t => t.Name == tag.Name && t.TagId!=tag.TagId))
             {
@@ -99,6 +101,15 @@ namespace MIL_LIT.Controllers_
             } else
             if (ModelState.IsValid)
             {
+                if(tag.CoverFile != null)
+                {
+                    string folder = "tags/covers/";
+                    string FileNameWithoutSpaces = string.Join("", tag.CoverFile.FileName.Split(" ", StringSplitOptions.RemoveEmptyEntries));
+                    folder +=  Guid.NewGuid().ToString() + "_" + FileNameWithoutSpaces;
+                    string ServerFolder = Path.Combine(_webHostEnvironment.WebRootPath, folder);
+                    await tag.CoverFile.CopyToAsync(new FileStream(ServerFolder, FileMode.Create));
+                    tag.CoverImage = "/"+folder;
+                }
                 tag.CreatedAt = DateTime.UtcNow;
                 _context.Add(tag);
                 await _context.SaveChangesAsync();
@@ -132,7 +143,7 @@ namespace MIL_LIT.Controllers_
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("TagId,Name,CreatedBy,CoverImage,CreatedAt,ParentTagId")] Tag tag)
+        public async Task<IActionResult> Edit(int id, [Bind("TagId,Name,CreatedBy,CoverImage,CreatedAt,ParentTagId,CoverFile")] Tag tag)
         {
             if (id != tag.TagId)
             {
@@ -147,6 +158,15 @@ namespace MIL_LIT.Controllers_
             {
                 try
                 {
+                    if(tag.CoverFile != null)
+                    {
+                        string folder = "tags/covers/";
+                        string FileNameWithoutSpaces = string.Join("", tag.CoverFile.FileName.Split(" ", StringSplitOptions.RemoveEmptyEntries));
+                        folder +=  Guid.NewGuid().ToString() + "_" + FileNameWithoutSpaces;
+                        string ServerFolder = Path.Combine(_webHostEnvironment.WebRootPath, folder);
+                        await tag.CoverFile.CopyToAsync(new FileStream(ServerFolder, FileMode.Create));
+                        tag.CoverImage = "/"+folder;
+                    }
                     _context.Update(tag);
                     await _context.SaveChangesAsync();
                 }

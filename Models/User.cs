@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.IdentityModel.Tokens;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MIL_LIT;
 
@@ -26,7 +27,9 @@ public partial class User : IValidatableObject
 
     [Display(Name = "Зображення профілю")]
     public string? ProfilePicture { get; set; }
-
+    
+    [NotMapped]
+    public IFormFile? CoverFile {get; set;}
     public virtual ICollection<Book> Books { get; set; } = new List<Book>();
 
     public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();

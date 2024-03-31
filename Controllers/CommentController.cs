@@ -49,9 +49,9 @@ namespace MIL_LIT.Controllers_
         // GET: Comment/Create
         public IActionResult Create()
         {
-            ViewData["BookId"] = new SelectList(_context.Books, "BookId", "BookId");
+            ViewData["BookId"] = new SelectList(_context.Books, "BookId", "Name");
             ViewData["ParentCommentId"] = new SelectList(_context.Comments, "CommentId", "CommentId");
-            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "UserId");
+            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "Login");
             return View();
         }
 
@@ -59,18 +59,18 @@ namespace MIL_LIT.Controllers_
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CommentId,Text,UserId,BookId,PostedAt,ParentCommentId")] Comment comment)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(comment);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "Book", new {id = comment.BookId});
             }
-            ViewData["BookId"] = new SelectList(_context.Books, "BookId", "BookId", comment.BookId);
+            ViewData["BookId"] = new SelectList(_context.Books, "BookId", "Name", comment.BookId);
             ViewData["ParentCommentId"] = new SelectList(_context.Comments, "CommentId", "CommentId", comment.ParentCommentId);
-            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "UserId", comment.UserId);
+            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "Login", comment.UserId);
             return View(comment);
         }
 

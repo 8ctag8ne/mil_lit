@@ -30,3 +30,48 @@
         </a>
     </p>
 </div>
+<div class="row align-self-center">
+    <div class="col-12">
+        <div id="countByAuthorChart"></div>
+    </div>
+</div>
+@section Scripts
+{
+    <script type="text/javascript"src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawCharts);
+    function drawCharts() 
+    {
+        fetch('/api/charts/countByAuthor')
+        .then(response => response.json())
+        .then(data => 
+        {
+            const dataTable = new
+            google.visualization.DataTable();
+            dataTable.addColumn('string', 'Автор');
+            dataTable.addColumn('number', 'Кількість книг');
+            data.forEach(item => { dataTable.addRow([item.author, item.count]); });
+            const options = 
+            {
+                title: 'Автори з найбільшим доробком',
+                titleTextStyle: 
+                {
+                    color: "white",               // color 'red' or '#cc00cc'
+                    fontName: "Montserrat",    // 'Times New Roman'
+                    fontSize: 25,               // 12, 18
+                    bold: true,                 // true or false
+                    italic: false                // true of false
+                },
+                width: 600,
+                height: 400,
+                backgroundColor: '#0b0c10',
+                legend: { position: 'none' },
+            };
+            const chart = new
+            google.visualization.ColumnChart(document.getElementById('countByAuthorChart'));
+            chart.draw(dataTable, options);
+        });
+    }
+    </script>
+}

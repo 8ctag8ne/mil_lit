@@ -4,7 +4,7 @@
 <hr />
 <div class="row wr">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form asp-action="Edit" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="TagId" />
             <div class="form-group mb-2">
@@ -18,8 +18,12 @@
                 <span asp-validation-for="CreatedBy" class="text-danger"></span>
             </div>
             <div class="form-group mb-2">
-                <label asp-for="CoverImage" class="control-label">Обкладинка</label>
-                <input asp-for="CoverImage" class="form-control" />
+                <label asp-for="CoverFile" for="formFile" class="form-label">Нова обкладинка</label>
+                <input asp-for="CoverFile" class="form-control" type="file" id="formFile" accept="image/*">
+                <span asp-validation-for="CoverFile" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-2">
+                <input asp-for="CoverImage" class="form-control" type="hidden"/>
                 <span asp-validation-for="CoverImage" class="text-danger"></span>
             </div>
             <div class="form-group mb-2">

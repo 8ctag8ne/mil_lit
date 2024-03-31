@@ -5,6 +5,42 @@
       "PackagePath": "staticwebassets\\MIL_LIT.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\nazar\\OneDrive\\Рабочий стол\\унік\\Прога\\MIL_LIT\\wwwroot\\books\\cover1ab4ebbf-8ede-42e3-acf7-e21790af66c9_photo_2021-11-17_14-01-23.jpg",
+      "PackagePath": "staticwebassets\\books\\cover1ab4ebbf-8ede-42e3-acf7-e21790af66c9_photo_2021-11-17_14-01-23.jpg"
+    },
+    {
+      "Id": "C:\\Users\\nazar\\OneDrive\\Рабочий стол\\унік\\Прога\\MIL_LIT\\wwwroot\\books\\cover4cb9b641-0296-4dbd-b67d-735bb835bfb5_245031246eb8222256ba9fb77a9f2685.jpg",
+      "PackagePath": "staticwebassets\\books\\cover4cb9b641-0296-4dbd-b67d-735bb835bfb5_245031246eb8222256ba9fb77a9f2685.jpg"
+    },
+    {
+      "Id": "C:\\Users\\nazar\\OneDrive\\Рабочий стол\\унік\\Прога\\MIL_LIT\\wwwroot\\books\\cover4f4bf85a-bdaa-4398-bc8d-6d68c74e917f_NAZI TSYPKO.png",
+      "PackagePath": "staticwebassets\\books\\cover4f4bf85a-bdaa-4398-bc8d-6d68c74e917f_NAZI TSYPKO.png"
+    },
+    {
+      "Id": "C:\\Users\\nazar\\OneDrive\\Рабочий стол\\унік\\Прога\\MIL_LIT\\wwwroot\\books\\cover7cfac7c2-2c42-4c25-b11e-186dd31d1a75_58fjxe9jev371.png",
+      "PackagePath": "staticwebassets\\books\\cover7cfac7c2-2c42-4c25-b11e-186dd31d1a75_58fjxe9jev371.png"
+    },
+    {
+      "Id": "C:\\Users\\nazar\\OneDrive\\Рабочий стол\\унік\\Прога\\MIL_LIT\\wwwroot\\books\\coverbd2dfba0-048d-4bce-8b27-653f199a5ec3_photo_2021-11-17_14-01-23.jpg",
+      "PackagePath": "staticwebassets\\books\\coverbd2dfba0-048d-4bce-8b27-653f199a5ec3_photo_2021-11-17_14-01-23.jpg"
+    },
+    {
+      "Id": "C:\\Users\\nazar\\OneDrive\\Рабочий стол\\унік\\Прога\\MIL_LIT\\wwwroot\\books\\coverbe7e5ad3-0bed-4a62-b775-2173b2d8e4d9_miskun.jpg",
+      "PackagePath": "staticwebassets\\books\\coverbe7e5ad3-0bed-4a62-b775-2173b2d8e4d9_miskun.jpg"
+    },
+    {
+      "Id": "C:\\Users\\nazar\\OneDrive\\Рабочий стол\\унік\\Прога\\MIL_LIT\\wwwroot\\books\\coverfd1b851b-9026-4319-88c7-c05762709f02_NAZITSYPKO.png",
+      "PackagePath": "staticwebassets\\books\\coverfd1b851b-9026-4319-88c7-c05762709f02_NAZITSYPKO.png"
+    },
+    {
+      "Id": "C:\\Users\\nazar\\OneDrive\\Рабочий стол\\унік\\Прога\\MIL_LIT\\wwwroot\\books\\covers\\316bc16f-b58a-4bd2-81e1-331e3f1786fa_photo_2022-02-08_13-59-18.jpg",
+      "PackagePath": "staticwebassets\\books\\covers\\316bc16f-b58a-4bd2-81e1-331e3f1786fa_photo_2022-02-08_13-59-18.jpg"
+    },
+    {
+      "Id": "C:\\Users\\nazar\\OneDrive\\Рабочий стол\\унік\\Прога\\MIL_LIT\\wwwroot\\books\\covers\\9f3bba61-fbd9-45dc-9019-a57493c395a0_ukrainiannazicolaborant(бандерівець).png",
+      "PackagePath": "staticwebassets\\books\\covers\\9f3bba61-fbd9-45dc-9019-a57493c395a0_ukrainiannazicolaborant(бандерівець).png"
+    },
+    {
       "Id": "C:\\Users\\nazar\\OneDrive\\Рабочий стол\\унік\\Прога\\MIL_LIT\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
@@ -257,6 +293,10 @@
       "PackagePath": "staticwebassets\\resources\\Logo.png"
     },
     {
+      "Id": "C:\\Users\\nazar\\OneDrive\\Рабочий стол\\унік\\Прога\\MIL_LIT\\wwwroot\\resources\\NoImage.png",
+      "PackagePath": "staticwebassets\\resources\\NoImage.png"
+    },
+    {
       "Id": "C:\\Users\\nazar\\OneDrive\\Рабочий стол\\унік\\Прога\\MIL_LIT\\wwwroot\\resources\\NoUser.png",
       "PackagePath": "staticwebassets\\resources\\NoUser.png"
     },
@@ -271,6 +311,14 @@
     {
       "Id": "C:\\Users\\nazar\\OneDrive\\Рабочий стол\\унік\\Прога\\MIL_LIT\\wwwroot\\resources\\placeholder.webp",
       "PackagePath": "staticwebassets\\resources\\placeholder.webp"
+    },
+    {
+      "Id": "C:\\Users\\nazar\\OneDrive\\Рабочий стол\\унік\\Прога\\MIL_LIT\\wwwroot\\tags\\covers\\9edcb4ec-1012-4fe0-b588-bfb2ad2db212_iAPRudV.png",
+      "PackagePath": "staticwebassets\\tags\\covers\\9edcb4ec-1012-4fe0-b588-bfb2ad2db212_iAPRudV.png"
+    },
+    {
+      "Id": "C:\\Users\\nazar\\OneDrive\\Рабочий стол\\унік\\Прога\\MIL_LIT\\wwwroot\\users\\covers\\710ca8ec-f3c5-4111-9c07-759ff7b06817_my_reaction.jpg",
+      "PackagePath": "staticwebassets\\users\\covers\\710ca8ec-f3c5-4111-9c07-759ff7b06817_my_reaction.jpg"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.MIL_LIT.Microsoft.AspNetCore.StaticWebAssets.props",

@@ -20,7 +20,7 @@
                 {
                     <a asp-action="Details" asp-route-id="@Model.BookId">
                     <img height="450" width="300" class="fit-image"
-                    src = https://www.survivorsuk.org/wp-content/uploads/2017/01/no-image.jpg
+                    src = "~/resources/NoImage.png"
                     alt = "Нема хліба, нема сала, Калі - Юга все забрала"
                     />
                     </a>
@@ -44,9 +44,15 @@
                     <tr>
                         <th scope="row">Створено користувачем:</th>
                         <td>
-                            <a asp-action="Details" asp-route-id="@Model.CreatedByNavigation.UserId" asp-controller="User" style="text-decoration:none">
-                                @Model.CreatedByNavigation.Login
-                            </a>
+                            @if(Model.CreatedByNavigation == null)
+                            {
+                                <text>Користувач видалений</text>
+                            } else
+                            {
+                                <a asp-action="Details" asp-route-id="@Model.CreatedByNavigation.UserId" asp-controller="User" style="text-decoration:none">
+                                    @Model.CreatedByNavigation.Login
+                                </a>
+                            }
                         </td>
                     </tr>
                     <tr>

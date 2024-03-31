@@ -12,10 +12,12 @@ namespace MIL_LIT.Controllers_
     public class UserController : Controller
     {
         private  readonly MilLitDbContext _context;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public UserController(MilLitDbContext context)
+        public UserController(MilLitDbContext context, IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         // GET: User
@@ -54,10 +56,19 @@ namespace MIL_LIT.Controllers_
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UserId,PasswordHash,Login,IsAdmin,ProfilePicture")] User user)
+        public async Task<IActionResult> Create([Bind("UserId,PasswordHash,Login,IsAdmin,ProfilePicture,CoverFile")] User user)
         {
             if (ModelState.IsValid)
             {
+                if(user.CoverFile != null)
+                {
+                    string folder = "users/covers/";
+                    string FileNameWithoutSpaces = string.Join("", user.CoverFile.FileName.Split(" ", StringSplitOptions.RemoveEmptyEntries));
+                    folder +=  Guid.NewGuid().ToString() + "_" + FileNameWithoutSpaces;
+                    string ServerFolder = Path.Combine(_webHostEnvironment.WebRootPath, folder);
+                    await user.CoverFile.CopyToAsync(new FileStream(ServerFolder, FileMode.Create));
+                    user.ProfilePicture = "/"+folder;
+                }
                 user.CreatedAt = DateTime.UtcNow;
                 // Console.WriteLine("CreatedAt: " + user.CreatedAt);
                 _context.Add(user);
@@ -88,7 +99,7 @@ namespace MIL_LIT.Controllers_
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("UserId,PasswordHash,Login,IsAdmin,CreatedAt,ProfilePicture")] User user)
+        public async Task<IActionResult> Edit(int id, [Bind("UserId,PasswordHash,Login,IsAdmin,CreatedAt,ProfilePicture,CoverFile")] User user)
         {
             if (id != user.UserId)
             {
@@ -99,6 +110,15 @@ namespace MIL_LIT.Controllers_
             {
                 try
                 {
+                    if(user.CoverFile != null)
+                    {
+                        string folder = "users/covers/";
+                        string FileNameWithoutSpaces = string.Join("", user.CoverFile.FileName.Split(" ", StringSplitOptions.RemoveEmptyEntries));
+                        folder +=  Guid.NewGuid().ToString() + "_" + FileNameWithoutSpaces;
+                        string ServerFolder = Path.Combine(_webHostEnvironment.WebRootPath, folder);
+                        await user.CoverFile.CopyToAsync(new FileStream(ServerFolder, FileMode.Create));
+                        user.ProfilePicture = "/"+folder;
+                    }
                     _context.Update(user);
                     await _context.SaveChangesAsync();
                 }
