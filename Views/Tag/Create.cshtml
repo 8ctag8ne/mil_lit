@@ -1,4 +1,8 @@
 @model MIL_LIT.Tag
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> _signInManager
+@inject UserManager<User> _userManager
+
 
 <h4 class="wr">Створити нову категорію</h4>
 <hr class="wr"/>
@@ -11,10 +15,7 @@
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
-            <div class="form-group mb-2">
-                <label asp-for="CreatedBy" class="control-label">Створено користувачем</label>
-                <select asp-for="CreatedBy" class ="form-control" asp-items="ViewBag.CreatedBy"></select>
-            </div>
+                <input asp-for="CreatedBy" hidden readonly value = "@_userManager.GetUserId(User)">
             <div class="form-group mb-2">
                 <input asp-for="CoverImage" class="form-control" type="hidden"/>
                 <span asp-validation-for="CoverImage" class="text-danger"></span>

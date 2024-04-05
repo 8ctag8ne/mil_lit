@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 using MIL_LIT;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,6 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<MilLitDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString(nameof(MilLitDbContext))));
+builder.Services.AddIdentity<User, IdentityRole<int> >().AddEntityFrameworkStores<MilLitDbContext>();
+
 
 var app = builder.Build();
 
@@ -20,9 +24,11 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+app.UseAuthentication();
+app.UseAuthorization();
+
 app.UseRouting();
 
-app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",

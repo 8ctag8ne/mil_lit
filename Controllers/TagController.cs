@@ -83,7 +83,7 @@ namespace MIL_LIT.Controllers_
         // GET: Tag/Create
         public IActionResult Create()
         {
-            ViewData["CreatedBy"] = new SelectList(_context.Users.Where(t => t.IsAdmin), "UserId", "Login");
+            ViewData["CreatedBy"] = new SelectList(_context.Users.Where(t => t.IsAdmin), "Id", "Login");
             ViewData["ParentTagId"] = new SelectList(_context.Tags, "TagId", "Name");
             return View();
         }
@@ -115,7 +115,7 @@ namespace MIL_LIT.Controllers_
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CreatedBy"] = new SelectList(_context.Users.Where(t => t.IsAdmin), "UserId", "Login", tag.CreatedBy);
+            ViewData["CreatedBy"] = new SelectList(_context.Users.Where(t => t.IsAdmin), "Id", "Login", tag.CreatedBy);
             ViewData["ParentTagId"] = new SelectList(_context.Tags, "TagId", "Name", tag.ParentTagId);
             return View(tag);
         }
@@ -133,7 +133,7 @@ namespace MIL_LIT.Controllers_
             {
                 return NotFound();
             }
-            ViewData["CreatedBy"] = new SelectList(_context.Users.Where(t => t.IsAdmin), "UserId", "Login", tag.CreatedBy);
+            ViewData["CreatedBy"] = new SelectList(_context.Users.Where(t => t.IsAdmin), "Id", "Login", tag.CreatedBy);
             ViewData["ParentTagId"] = new SelectList(_context.Tags, "TagId", "Name", tag.ParentTagId);
             return View(tag);
         }
@@ -183,7 +183,7 @@ namespace MIL_LIT.Controllers_
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CreatedBy"] = new SelectList(_context.Users/*.Where(t => t.IsAdmin)*/, "UserId", "Login", tag.CreatedBy);
+            ViewData["CreatedBy"] = new SelectList(_context.Users/*.Where(t => t.IsAdmin)*/, "Id", "Login", tag.CreatedBy);
             ViewData["ParentTagId"] = new SelectList(_context.Tags, "TagId", "Name", tag.ParentTagId);
             return View(tag);
         }

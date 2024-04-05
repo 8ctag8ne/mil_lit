@@ -64,7 +64,7 @@
                                 <p>Користувач видалений</p>
                             } else
                             {
-                                <a asp-action="Details" asp-controller="User" asp-route-id="@item.CreatedByNavigation.UserId" style="text-decoration:none">
+                                <a asp-action="Details" asp-controller="User" asp-route-id="@item.CreatedByNavigation.Id" style="text-decoration:none">
                                     @Html.DisplayFor(modelItem => item.CreatedByNavigation.Login)
                                 </a>
                             }

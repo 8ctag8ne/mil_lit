@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace MIL_LIT;
 
-public partial class MilLitDbContext : DbContext
+public partial class MilLitDbContext : IdentityDbContext<User, IdentityRole<int>, int>
 {
     public MilLitDbContext()
     {
@@ -13,6 +15,7 @@ public partial class MilLitDbContext : DbContext
     public MilLitDbContext(DbContextOptions<MilLitDbContext> options)
         : base(options)
     {
+        Database.EnsureCreated();
     }
 
     public virtual DbSet<Book> Books { get; set; }
@@ -31,6 +34,7 @@ public partial class MilLitDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
         modelBuilder.Entity<Book>(entity =>
         {
             entity.Property(e => e.BookId).HasColumnName("BookID");
@@ -152,7 +156,6 @@ public partial class MilLitDbContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.Property(e => e.UserId).HasColumnName("UserID");
             entity.Property(e => e.CreatedAt);
             entity.Property(e => e.IsAdmin).HasColumnName("isAdmin");
             entity.Property(e => e.Login)

@@ -51,7 +51,7 @@ namespace MIL_LIT.Controllers_
         {
             ViewData["BookId"] = new SelectList(_context.Books, "BookId", "Name");
             ViewData["ParentCommentId"] = new SelectList(_context.Comments, "CommentId", "CommentId");
-            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "Login");
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Login");
             return View();
         }
 
@@ -70,7 +70,7 @@ namespace MIL_LIT.Controllers_
             }
             ViewData["BookId"] = new SelectList(_context.Books, "BookId", "Name", comment.BookId);
             ViewData["ParentCommentId"] = new SelectList(_context.Comments, "CommentId", "CommentId", comment.ParentCommentId);
-            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "Login", comment.UserId);
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Login", comment.UserId);
             return View(comment);
         }
 
@@ -89,7 +89,7 @@ namespace MIL_LIT.Controllers_
             }
             ViewData["BookId"] = new SelectList(_context.Books, "BookId", "BookId", comment.BookId);
             ViewData["ParentCommentId"] = new SelectList(_context.Comments, "CommentId", "CommentId", comment.ParentCommentId);
-            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "UserId", comment.UserId);
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Login", comment.UserId);
             return View(comment);
         }
 
@@ -127,7 +127,7 @@ namespace MIL_LIT.Controllers_
             }
             ViewData["BookId"] = new SelectList(_context.Books, "BookId", "BookId", comment.BookId);
             ViewData["ParentCommentId"] = new SelectList(_context.Comments, "CommentId", "CommentId", comment.ParentCommentId);
-            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "UserId", comment.UserId);
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Login", comment.UserId);
             return View(comment);
         }
 

@@ -4,13 +4,16 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.IdentityModel.Tokens;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
+using MIL_LIT.Models;
+using MIL_LIT.ViewModel;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace MIL_LIT;
 
-public partial class User : IValidatableObject
+public partial class User : IdentityUser<int>, IValidatableObject
 {
-    public int UserId { get; set; }
-
     [Display(Name = "Ім'я користувача")]
     [Required(ErrorMessage = "Ім'я користувача не може бути порожнім.")]
     public string Login { get; set; } = null!;
@@ -27,7 +30,7 @@ public partial class User : IValidatableObject
 
     [Display(Name = "Зображення профілю")]
     public string? ProfilePicture { get; set; }
-    
+
     [NotMapped]
     public IFormFile? CoverFile {get; set;}
     public virtual ICollection<Book> Books { get; set; } = new List<Book>();
@@ -53,33 +56,34 @@ public partial class User : IValidatableObject
             yield return new ValidationResult("Довжина паролю не має перевищувати 50 символів.", new []{nameof(PasswordHash)});
         }
 
-        if(PasswordHash.Length < 8)
-        {
-            yield return new ValidationResult("Пароль має бути не коротшим від 8 символів.", new []{nameof(PasswordHash)});
-        }
+        // if(PasswordHash.Length < 8)
+        // {
+        //     yield return new ValidationResult("Пароль має бути не коротшим від 8 символів.", new []{nameof(PasswordHash)});
+        // }
 
         if(PasswordHash.IsNullOrEmpty())
         {
             yield return new ValidationResult("Пароль не може бути порожнім.", new []{nameof(PasswordHash)});
         }
 
-        string SpecialCharacters=@"!#'$%&()*+,-./:;<=>?@[\]^_`{|}~";
-        foreach(var ch in PasswordHash)
-        {
-            if(!(ch<='z' && ch>='a') && !(ch<='Z' && ch>='A') && !char.IsDigit(ch) && !SpecialCharacters.Contains(ch))
-            {
-                yield return new ValidationResult("Пароль може складатися тільки з символів англійського алфавіту, цифр та спеціальних символів на кшталт !#$%&()*+-", new []{nameof(PasswordHash)});
-            }
-        }
+        // string SpecialCharacters=@"!#'$%&()*+,-./:;<=>?@[\]^_`{|}~";
+        // foreach(var ch in PasswordHash)
+        // {
+        //     if(!(ch<='z' && ch>='a') && !(ch<='Z' && ch>='A') && !char.IsDigit(ch) && !SpecialCharacters.Contains(ch))
+        //     {
+        //         yield return new ValidationResult("Пароль може складатися тільки з символів англійського алфавіту, цифр та спеціальних символів на кшталт !#$%&()*+-", new []{nameof(PasswordHash)});
+        //     }
+        // }
 
-        String LoginCharacters="+-!@#$%^&*()_, .";
+        // String LoginCharacters="+-!@#$%^&*()_, .";
 
-        foreach(var ch in Login)
-        {
-            if(!char.IsLetter(ch) && !char.IsDigit(ch) && !LoginCharacters.Contains(ch))
-            {
-                yield return new ValidationResult("Ім'я користувача може містити тільки літери цифри та знаки +-!@#$%^&*()_, .", new []{nameof(Login)});
-            }
-        }
+        // foreach(var ch in Login)
+        // {
+        //     if(!char.IsLetter(ch) && !char.IsDigit(ch) && !LoginCharacters.Contains(ch))
+        //     {
+        //         yield return new ValidationResult("Ім'я користувача може містити тільки літери цифри та знаки +-!@#$%^&*()_, .", new []{nameof(Login)});
+        //     }
+        // }
     }
 }
+

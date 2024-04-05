@@ -78,3 +78,9 @@ img{
 .card-img{
   align-items: center;
 }
+.logout-link{
+  font-weight: bold;
+}
+.logout-button:hover{
+  background-color: #1f2833;
+}

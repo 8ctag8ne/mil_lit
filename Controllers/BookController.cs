@@ -56,16 +56,18 @@ namespace MIL_LIT.Controllers_
             var TagList = await _context.BookTags.Where(b => b.BookId == book.BookId).Select(t=>t.TagId).ToListAsync();
             var Tags = _context.Tags.Where(t => TagList.Contains(t.TagId)).Include(t => t.CreatedByNavigation).Include(t => t.ParentTag);
             var BookComments = _context.Comments.Where(c=>c.BookId == book.BookId).Include(c=>c.User);
+            string DownloadLink = "https://drive.usercontent.google.com/uc?id="+book.SourceLink.Split("/", StringSplitOptions.RemoveEmptyEntries)[4]+"&export=download";
             ViewData["Tags"] = Tags;
             ViewData["Comments"] = BookComments;
-            ViewData["Users"] = new SelectList(_context.Users.ToList(), "UserId", "Login");
+            ViewData["DownloadLink"] = DownloadLink;
+            ViewData["Users"] = new SelectList(_context.Users.ToList(), "Id", "Login");
             return View(book);
         }
 
         // GET: Book/Create
         public IActionResult Create()
         {
-            ViewData["CreatedBy"] = new SelectList(_context.Users.Where(user=>user.IsAdmin), "UserId", "Login");
+            ViewData["CreatedBy"] = new SelectList(_context.Users.Where(user=>user.IsAdmin), "Id", "Login");
             ViewData["AllTags"] = new MultiSelectList(_context.Tags, "TagId", "Name");
             return View();
         }
@@ -114,7 +116,7 @@ namespace MIL_LIT.Controllers_
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CreatedBy"] = new SelectList(_context.Users, "UserId", "Login", book.CreatedBy);
+            ViewData["CreatedBy"] = new SelectList(_context.Users, "Id", "Login", book.CreatedBy);
             ViewData["AllTags"] = new MultiSelectList(_context.Tags, "TagId", "Name");
             return View(book);
         }
@@ -134,7 +136,7 @@ namespace MIL_LIT.Controllers_
             }
             int[] tags = await _context.BookTags.Where(bt=>bt.BookId == book.BookId).Select(t=>t.TagId).ToArrayAsync();
             book.TagIds = tags.ToList();
-            ViewData["CreatedBy"] = new SelectList(_context.Users.Where(user=>user.IsAdmin), "UserId", "Login", book.CreatedBy);
+            ViewData["CreatedBy"] = new SelectList(_context.Users.Where(user=>user.IsAdmin), "Id", "Login", book.CreatedBy);
             ViewData["AllTags"] = new MultiSelectList(_context.Tags, "TagId", "Name", tags);
             return View(book);
         }
@@ -205,7 +207,7 @@ namespace MIL_LIT.Controllers_
                 return RedirectToAction(nameof(Index));
             }
             int[] tags = await _context.BookTags.Where(bt=>bt.BookId == book.BookId).Select(t=>t.TagId).ToArrayAsync();
-            ViewData["CreatedBy"] = new SelectList(_context.Users, "UserId", "Login", book.CreatedBy);
+            ViewData["CreatedBy"] = new SelectList(_context.Users, "Id", "Login", book.CreatedBy);
             ViewData["AllTags"] = new MultiSelectList(_context.Tags, "TagId", "Name", tags);
             return View(book);
         }

@@ -37,6 +37,10 @@
       "PackagePath": "staticwebassets\\books\\covers\\316bc16f-b58a-4bd2-81e1-331e3f1786fa_photo_2022-02-08_13-59-18.jpg"
     },
     {
+      "Id": "C:\\Users\\nazar\\OneDrive\\Рабочий стол\\унік\\Прога\\MIL_LIT\\wwwroot\\books\\covers\\870a1f19-d320-40c9-9f17-af3802e883d6_image_2024-04-05_03-07-23.png",
+      "PackagePath": "staticwebassets\\books\\covers\\870a1f19-d320-40c9-9f17-af3802e883d6_image_2024-04-05_03-07-23.png"
+    },
+    {
       "Id": "C:\\Users\\nazar\\OneDrive\\Рабочий стол\\унік\\Прога\\MIL_LIT\\wwwroot\\books\\covers\\9f3bba61-fbd9-45dc-9019-a57493c395a0_ukrainiannazicolaborant(бандерівець).png",
       "PackagePath": "staticwebassets\\books\\covers\\9f3bba61-fbd9-45dc-9019-a57493c395a0_ukrainiannazicolaborant(бандерівець).png"
     },
@@ -313,12 +317,32 @@
       "PackagePath": "staticwebassets\\resources\\placeholder.webp"
     },
     {
+      "Id": "C:\\Users\\nazar\\OneDrive\\Рабочий стол\\унік\\Прога\\MIL_LIT\\wwwroot\\tags\\covers\\1aae1253-388e-452f-89c7-3e2aec03ab7b_16550919-pack_xl.webp",
+      "PackagePath": "staticwebassets\\tags\\covers\\1aae1253-388e-452f-89c7-3e2aec03ab7b_16550919-pack_xl.webp"
+    },
+    {
       "Id": "C:\\Users\\nazar\\OneDrive\\Рабочий стол\\унік\\Прога\\MIL_LIT\\wwwroot\\tags\\covers\\9edcb4ec-1012-4fe0-b588-bfb2ad2db212_iAPRudV.png",
       "PackagePath": "staticwebassets\\tags\\covers\\9edcb4ec-1012-4fe0-b588-bfb2ad2db212_iAPRudV.png"
     },
     {
+      "Id": "C:\\Users\\nazar\\OneDrive\\Рабочий стол\\унік\\Прога\\MIL_LIT\\wwwroot\\users\\covers\\25e85b6b-7061-40b5-acc7-999c04f3f3de_110103787_1537151209789830_2664484084060252320_n.jpg",
+      "PackagePath": "staticwebassets\\users\\covers\\25e85b6b-7061-40b5-acc7-999c04f3f3de_110103787_1537151209789830_2664484084060252320_n.jpg"
+    },
+    {
+      "Id": "C:\\Users\\nazar\\OneDrive\\Рабочий стол\\унік\\Прога\\MIL_LIT\\wwwroot\\users\\covers\\4947acf7-4e74-4284-b12a-2bd3edb80ffd_my_reaction.jpg",
+      "PackagePath": "staticwebassets\\users\\covers\\4947acf7-4e74-4284-b12a-2bd3edb80ffd_my_reaction.jpg"
+    },
+    {
+      "Id": "C:\\Users\\nazar\\OneDrive\\Рабочий стол\\унік\\Прога\\MIL_LIT\\wwwroot\\users\\covers\\6bf706f1-327f-4e79-abe2-6d34d0369a9f_110103787_1537151209789830_2664484084060252320_n.jpg",
+      "PackagePath": "staticwebassets\\users\\covers\\6bf706f1-327f-4e79-abe2-6d34d0369a9f_110103787_1537151209789830_2664484084060252320_n.jpg"
+    },
+    {
       "Id": "C:\\Users\\nazar\\OneDrive\\Рабочий стол\\унік\\Прога\\MIL_LIT\\wwwroot\\users\\covers\\710ca8ec-f3c5-4111-9c07-759ff7b06817_my_reaction.jpg",
       "PackagePath": "staticwebassets\\users\\covers\\710ca8ec-f3c5-4111-9c07-759ff7b06817_my_reaction.jpg"
+    },
+    {
+      "Id": "C:\\Users\\nazar\\OneDrive\\Рабочий стол\\унік\\Прога\\MIL_LIT\\wwwroot\\users\\covers\\89c1cf9e-a301-4842-abbc-d7ec7da26e60_photo_2024-01-23_22-12-58.jpg",
+      "PackagePath": "staticwebassets\\users\\covers\\89c1cf9e-a301-4842-abbc-d7ec7da26e60_photo_2024-01-23_22-12-58.jpg"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.MIL_LIT.Microsoft.AspNetCore.StaticWebAssets.props",

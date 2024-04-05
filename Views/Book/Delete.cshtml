@@ -49,7 +49,7 @@
                                 <text>Користувач видалений</text>
                             } else
                             {
-                                <a asp-action="Details" asp-route-id="@Model.CreatedByNavigation.UserId" asp-controller="User" style="text-decoration:none">
+                                <a asp-action="Details" asp-route-id="@Model.CreatedByNavigation.Id" asp-controller="User" style="text-decoration:none">
                                     @Model.CreatedByNavigation.Login
                                 </a>
                             }

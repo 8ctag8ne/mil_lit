@@ -1,8 +1,12 @@
 @model MIL_LIT.Book
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> _signInManager
+@inject UserManager<User> _userManager
 
 @{
     IEnumerable<Tag> Tags = ViewData["Tags"] as IEnumerable<Tag>;
     IEnumerable<MIL_LIT.Comment> Comments = ViewData["Comments"] as IEnumerable<MIL_LIT.Comment>;
+    string DownloadLink = ViewData["DownloadLink"] as string;
 }
 <div class="wr">
     <h4>@Model.Name</h4>
@@ -50,7 +54,7 @@
                                 <text>Користувач видалений</text>
                             } else
                             {
-                                <a asp-action="Details" asp-route-id="@Model.CreatedByNavigation.UserId" asp-controller="User" style="text-decoration:none">
+                                <a asp-action="Details" asp-route-id="@Model.CreatedByNavigation.Id" asp-controller="User" style="text-decoration:none">
                                     @Model.CreatedByNavigation.Login
                                 </a>
                             }
@@ -100,9 +104,9 @@
     </div>
     <div class="row">
         <div class="col-lg-3 d-flex">
-                <button class="btn btn-outline-info w-100 mb-2" data-toggle="button" aria-pressed="false">
+            <a href=@DownloadLink class="btn btn-outline-info w-100 mb-2">
                     <i class="bi bi-download"></i>
-                </button>
+            </a>
         </div>
     </div>
     <dl class="row">
@@ -125,22 +129,30 @@
     <a asp-action="Edit" asp-route-id="@Model?.BookId" class="btn btn-outline-warning me-3 my-3">Редагувати</a>
     <a asp-action="Index" class="btn btn-outline-secondary my-3">Повернутися до списку книг</a>
 </div>
-<form method="post" asp-controller="Comment" asp-action="Create">
-    <div class="form-group">
-        <label class="control-label wr">Ваш коментар:</label>
-        <textarea name="Text" id="output" class="form-control commentinput"></textarea>
-        <!--<span asp-validation-for="Text" class="text-danger"></span>-->
-    </div>
-    <div class="form-group" >
-        <label class="control-label wr">Автор</label>
-        <select name="UserId" class ="form-control" asp-items="ViewBag.Users"></select>
-    </div>
-    <input asp-for="BookId" value="@Model.BookId" readonly hidden/>
-    <!--<span asp-validation-for="BookId" class="text-danger"></span>-->
-    <div class="form-group my-3">
-        <input type="submit" value="Додати коментар" class="btn btn-outline-info" />
-    </div>
-</form>
+@if(User.Identity.IsAuthenticated)
+{
+    <form method="post" asp-controller="Comment" asp-action="Create">
+        <div class="form-group">
+            <label class="control-label wr">Ваш коментар:</label>
+            <textarea name="Text" id="output" class="form-control commentinput"></textarea>
+            <!--<span asp-validation-for="Text" class="text-danger"></span>-->
+        </div>
+        <input name="UserId" value="@_userManager.GetUserId(User)" readonly hidden/>
+        <input asp-for="BookId" value="@Model.BookId" readonly hidden/>
+        <!--<span asp-validation-for="BookId" class="text-danger"></span>-->
+        <div class="form-group my-3">
+            <input type="submit" value="Додати коментар" class="btn btn-outline-info" />
+        </div>
+    </form>
+}
+else
+{
+    <p>
+        <h5 class="wr">
+            Щоби додати коментар необхідно зареєструватися.
+        </h5>
+    </p>
+}
 
 @if(Comments != null && Comments.Count() > 0)
 {

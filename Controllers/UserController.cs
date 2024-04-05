@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Permissions;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -13,11 +15,15 @@ namespace MIL_LIT.Controllers_
     {
         private  readonly MilLitDbContext _context;
         private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly SignInManager<User> _signInManager;
+        private readonly UserManager<User> _userManager;
 
-        public UserController(MilLitDbContext context, IWebHostEnvironment webHostEnvironment)
+        public UserController(MilLitDbContext context, IWebHostEnvironment webHostEnvironment, SignInManager<User> signInManager, UserManager<User> userManager)
         {
             _context = context;
             _webHostEnvironment = webHostEnvironment;
+            _signInManager = signInManager;
+            _userManager = userManager;
         }
 
         // GET: User
@@ -35,13 +41,13 @@ namespace MIL_LIT.Controllers_
             }
 
             var user = await _context.Users
-                .FirstOrDefaultAsync(m => m.UserId == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (user == null)
             {
                 return NotFound();
             }
-            ViewData["PublishedBooks"] = await _context.Books.Where(b=>b.CreatedBy == user.UserId).ToListAsync();
-            ViewData["LikedBooks"] = await _context.Likes.Where(l=>l.UserId == user.UserId).ToListAsync();
+            ViewData["PublishedBooks"] = await _context.Books.Where(b=>b.CreatedBy == user.Id).ToListAsync();
+            ViewData["LikedBooks"] = await _context.Likes.Where(l=>l.UserId == user.Id).ToListAsync();
             return View(user);
         }
 
@@ -56,7 +62,7 @@ namespace MIL_LIT.Controllers_
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UserId,PasswordHash,Login,IsAdmin,ProfilePicture,CoverFile")] User user)
+        public async Task<IActionResult> Create([Bind("Id,PasswordHash,Login,IsAdmin,ProfilePicture,CoverFile")] User user)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +92,7 @@ namespace MIL_LIT.Controllers_
                 return NotFound();
             }
 
-            var user = await _context.Users.FindAsync(id);
+            var user = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == id);
             if (user == null)
             {
                 return NotFound();
@@ -99,9 +105,9 @@ namespace MIL_LIT.Controllers_
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("UserId,PasswordHash,Login,IsAdmin,CreatedAt,ProfilePicture,CoverFile")] User user)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,PasswordHash,Login,IsAdmin,CreatedAt,ProfilePicture,CoverFile")] User user)
         {
-            if (id != user.UserId)
+            if (id != user.Id)
             {
                 return NotFound();
             }
@@ -119,12 +125,14 @@ namespace MIL_LIT.Controllers_
                         await user.CoverFile.CopyToAsync(new FileStream(ServerFolder, FileMode.Create));
                         user.ProfilePicture = "/"+folder;
                     }
-                    _context.Update(user);
-                    await _context.SaveChangesAsync();
+                    user.SecurityStamp = Guid.NewGuid().ToString();
+                    await _userManager.UpdateAsync(user);
+                    // _context.Update(user);
+                    // await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!UserExists(user.UserId))
+                    if (!UserExists(user.Id))
                     {
                         return NotFound();
                     }
@@ -147,12 +155,12 @@ namespace MIL_LIT.Controllers_
             }
 
             var user = await _context.Users
-                .FirstOrDefaultAsync(m => m.UserId == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (user == null)
             {
                 return NotFound();
             }
-            ViewData["PublishedBooks"] = await _context.Books.Where(b=>b.CreatedBy == user.UserId).ToListAsync();
+            ViewData["PublishedBooks"] = await _context.Books.Where(b=>b.CreatedBy == user.Id).ToListAsync();
             return View(user);
         }
 
@@ -162,11 +170,12 @@ namespace MIL_LIT.Controllers_
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var user = await _context.Users.FindAsync(id);
+            var CurrentUser = _userManager.GetUserAsync(User);
             if (user != null)
             {
-                var UserBooks = _context.Books.Where(book => book.CreatedBy == user.UserId);
-                var UserTags = _context.Tags.Where(tag => tag.CreatedBy == user.UserId);
-                var UserComments = _context.Comments.Where(com => com.UserId == user.UserId);
+                var UserBooks = _context.Books.Where(book => book.CreatedBy == user.Id);
+                var UserTags = _context.Tags.Where(tag => tag.CreatedBy == user.Id);
+                var UserComments = _context.Comments.Where(com => com.UserId == user.Id);
                 foreach(var book in UserBooks)
                 {
                     book.CreatedBy = null;
@@ -184,28 +193,32 @@ namespace MIL_LIT.Controllers_
                     _context.Update(comment);
                 }
 
-                var LikeList = await _context.Likes.Where(like => like.UserId == user.UserId).ToListAsync();
+                var LikeList = await _context.Likes.Where(like => like.UserId == user.Id).ToListAsync();
                 foreach(var like in LikeList)
                 {
                     _context.Likes.Remove(like);
                 }
 
-                var SaveList = await _context.Saves.Where(save => save.UserId == user.UserId).ToListAsync();
+                var SaveList = await _context.Saves.Where(save => save.UserId == user.Id).ToListAsync();
                 foreach(var save in SaveList)
                 {
                     _context.Saves.Remove(save);
                 }
 
                 _context.Users.Remove(user);
+                await _userManager.DeleteAsync(user); //?
             }
-
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            if(user is not null && CurrentUser.Id == user.Id)
+            {
+                await _signInManager.SignOutAsync();
+            }
+            return RedirectToAction(nameof(Index)); 
         }
 
         private bool UserExists(int id)
         {
-            return _context.Users.Any(e => e.UserId == id);
+            return _context.Users.Any(e => e.Id == id);
         }
     }
 }
