@@ -17,13 +17,16 @@
     <div class="col-lg-2 ">
         <a asp-action="Index" class="btn btn-outline-secondary d-flex text-center mb-3" >Усі книги</a>
     </div>
-    <div class="col-lg-2">
-        <a asp-action="Create" class = "btn btn-outline-success d-flex text-center mb-3">Додати нову книгу</a>
-    </div>
+    @if(User.IsInRole("admin") || User.IsInRole("moderator"))
+    {
+        <div class="col-lg-2">
+            <a asp-action="Create" class = "btn btn-outline-success d-flex text-center mb-3">Додати нову книгу</a>
+        </div>
+    }
 </div>
 
 <div class="row">
-    @foreach (var item in Model) 
+    @foreach (var item in Model)
     {
             <div class="col-md-4 mb-4">
                 <div class="card book-fixed-height wr">
@@ -70,27 +73,40 @@
                             }
                         </p>
                         <div class="row">
-                            <div class="col-4 text-center d-flex">
-                                <a asp-action="Edit" asp-route-id="@item.BookId" style="text-decoration:none" class="w-100">
-                                    <button class="btn btn-outline-warning w-100">
-                                        <i class="bi bi-pencil-square"></i>
-                                    </button>
-                                </a>
-                            </div>
-                            <div class="col-4 text-center d-flex">
-                            <a asp-action="Details" asp-route-id="@item.BookId" style="text-decoration:none color:#808000;" class="w-100">
-                                <button class="btn btn-outline-success w-100">
-                                    <i class="bi bi-book"></i>
-                                </button>
-                            </a>
-                            </div>
-                            <div class="col-4 text-center d-flex">
-                            <a asp-action="Delete" asp-route-id="@item.BookId" style="text-decoration:none" class="w-100">
-                                <button class="btn btn-outline-danger w-100">
-                                    <i class="bi bi-trash-fill"></i>
-                                </button>
-                            </a>
-                            </div>
+                            @if(User.IsInRole("admin") || User.IsInRole("moderator"))
+                            {
+                                <div class="col-4 text-center d-flex">
+                                    <a asp-action="Edit" asp-route-id="@item.BookId" style="text-decoration:none" class="w-100">
+                                        <button class="btn btn-outline-warning w-100">
+                                            <i class="bi bi-pencil-square"></i>
+                                        </button>
+                                    </a>
+                                </div>
+                                <div class="col-4 text-center d-flex">
+                                    <a asp-action="Details" asp-route-id="@item.BookId" style="text-decoration:none color:#808000;" class="w-100">
+                                        <button class="btn btn-outline-success w-100">
+                                            <i class="bi bi-book"></i>
+                                        </button>
+                                    </a>
+                                </div>
+                                <div class="col-4 text-center d-flex">
+                                    <a asp-action="Delete" asp-route-id="@item.BookId" style="text-decoration:none" class="w-100">
+                                        <button class="btn btn-outline-danger w-100">
+                                            <i class="bi bi-trash-fill"></i>
+                                        </button>
+                                    </a>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="col-12 text-center d-flex">
+                                    <a asp-action="Details" asp-route-id="@item.BookId" style="text-decoration:none color:#808000;" class="w-100">
+                                        <button class="btn btn-outline-success w-100">
+                                            <i class="bi bi-book"></i>
+                                        </button>
+                                    </a>
+                                </div>
+                            }
                         </div>
                         
                     </div>

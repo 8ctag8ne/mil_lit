@@ -77,10 +77,21 @@ img{
 }
 .card-img{
   align-items: center;
+  align-content: center;
+  object-fit: cover;
 }
 .logout-link{
   font-weight: bold;
 }
 .logout-button:hover{
   background-color: #1f2833;
+}
+
+.list-group-item{
+  background: #0b0c10;
+  border-color: #1f2833;
+  /* box-shadow: rgba(255, 255, 255, 0.15) 1.95px 1.95px 2.6px; */
+}
+.list-group-item:hover {
+  background: #1f2833;
 }

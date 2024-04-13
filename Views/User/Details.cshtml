@@ -1,8 +1,13 @@
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> _signInManager
+@inject UserManager<User> _userManager
 @model MIL_LIT.User
 @{
     IEnumerable<Book> Books = ViewData["PublishedBooks"] as IEnumerable<Book>;
     IEnumerable<Like> Likes = ViewData["LikedBooks"] as IEnumerable<Like>;
 }
+
+
 <div>
     <h4 class="wr"> @Html.DisplayFor(model => model.Login)</h4>
     <hr />
@@ -22,12 +27,21 @@
                     />
                 }
         </div>
-        <div class = "col-sm-4">
-            @if(Model.IsAdmin)
+        <div class = "col-md-4">
+            @if((await _userManager.GetRolesAsync(Model)).Contains("admin"))
             {
                 <p><strong>
                     Адміністратор
                 </strong></p>
+            } else
+            if((await _userManager.GetRolesAsync(Model)).Contains("moderator"))
+            {
+                <p>
+                    <strong>
+                        Модератор
+                    </strong>
+                </p>
+
             } else
             {
                 <p>
@@ -40,7 +54,21 @@
                 Дата реєстрації: @Model.CreatedAt
             </p>
         </div>
+        @if(Likes != null && Likes.Count() > 0 )
+        {
+            <div class="col-md-5 self-align-right">
+                <div id="FavouriteTags"></div>
+            </div>
+        }
     </div>
+<div>
+    @if(User.IsInRole("admin") || _userManager.GetUserId(User) == Convert.ToString(Model.Id))
+    {
+        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-outline-warning me-3 my-3">Редагувати</a>
+        <a asp-action="Delete" asp-route-id="@Model?.Id" class="btn btn-outline-danger me-3 my-3">Видалити</a>
+        <a asp-action="Index" class="btn btn-outline-secondary my-3">Повернутися до списку користувачів</a>
+    }
+</div>
     @if(Books!=null && Books.Count()>0)
     {
         <p><h5 class="wr">Опубліковані книги:</h5></p>
@@ -53,8 +81,59 @@
                 </a>
             }
     }
+    @if(Likes!=null && Likes.Count()>0)
+    {
+        <p><h5 class="wr">Уподобані книги:</h5></p>
+            @foreach(var like in Likes)
+            {
+                <a class="me-2 mb-2 wr" asp-action="Details"  asp-controller="Book" asp-route-id="@like.BookId" style="text-decoration:none">
+                    <button class="btn btn-outline-danger">
+                        @like.Book.Name
+                    </button>
+                </a>
+            }
+    }
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-outline-warning me-3 my-3">Редагувати</a>
-    <a asp-action="Index" class="btn btn-outline-secondary my-3">Повернутися до списку користувачів</a>
-</div>
+
+@section Scripts
+{
+    <script type="text/javascript"src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+    google.charts.load('current', {'packages':['corechart']});
+    var userId = '@( await _userManager.GetUserIdAsync(Model))';
+    google.charts.setOnLoadCallback(() => drawCharts(userId));
+    function drawCharts(UserId) 
+    {
+        fetch('/api/charts/FavouriteTags?UserId=' + UserId)
+        .then(response => response.json())
+        .then(data => 
+        {
+            const dataTable = new
+            google.visualization.DataTable();
+            dataTable.addColumn('string', 'Назва категорії');
+            dataTable.addColumn('number', 'Кількість вподобань');
+            data.forEach(item => { dataTable.addRow([item.tag, item.count]); });
+            const options = 
+            {
+                title: 'Улюблені категорії',
+                titleTextStyle: 
+                {
+                    color: "white",               // color 'red' or '#cc00cc'
+                    //fontName: "Montserrat",    // 'Times New Roman'
+                    fontSize: 20,               // 12, 18
+                    bold: true,                 // true or false
+                    italic: false,                // true of false
+                },
+                width: 300,
+                height: 300,
+                backgroundColor: '#0b0c10',
+                chartArea: {'width': '80%', 'height': '80%'},
+                legend: {'position': 'bottom', textStyle: {color: 'white'}}
+            };
+            const chart = new
+            google.visualization.PieChart(document.getElementById('FavouriteTags'));
+            chart.draw(dataTable, options);
+        });
+    }
+    </script>
+}

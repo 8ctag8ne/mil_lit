@@ -54,7 +54,7 @@ public partial class MilLitDbContext : IdentityDbContext<User, IdentityRole<int>
 
         modelBuilder.Entity<BookTag>(entity =>
         {
-             entity.HasKey(bt => new { bt.BookId, bt.TagId });
+            entity.HasKey(bt => new { bt.BookId, bt.TagId });
 
             entity.Property(e => e.BookId).HasColumnName("BookID");
             entity.Property(e => e.TagId).HasColumnName("TagID");
@@ -98,7 +98,7 @@ public partial class MilLitDbContext : IdentityDbContext<User, IdentityRole<int>
 
         modelBuilder.Entity<Like>(entity =>
         {
-            entity.HasNoKey();
+            entity.HasKey(lk => new { lk.BookId, lk.UserId });
 
             entity.Property(e => e.BookId).HasColumnName("BookID");
             entity.Property(e => e.UserId).HasColumnName("UserID");
@@ -116,7 +116,7 @@ public partial class MilLitDbContext : IdentityDbContext<User, IdentityRole<int>
 
         modelBuilder.Entity<Safe>(entity =>
         {
-            entity.HasNoKey();
+            entity.HasKey(sf => new { sf.BookId, sf.UserId });
 
             entity.Property(e => e.BookId).HasColumnName("BookID");
             entity.Property(e => e.UserId).HasColumnName("UserID");

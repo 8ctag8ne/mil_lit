@@ -6,12 +6,12 @@ namespace MIL_LIT.ViewModel
     {
         [Required]
         [Display(Name = "Email")]
-        public string Email { get; set; }
+        public string Email { get; set; } = null!;
 
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Пароль")]
-        public string Password { get; set; }
+        public string Password { get; set; } = null!;
 
         [Display(Name = "Запам'ятати?")]
         public bool RememberMe { get; set; }

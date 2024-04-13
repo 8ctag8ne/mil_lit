@@ -2,37 +2,52 @@
     ViewData["Title"] = "Про нас";
 }
 
-<div class="text-center wr">
-    <h2 class="display-4">Літературний клуб ML</h2>
-    <p>
-        Тематична література для підготовки і розширення спектру знань. Ми створили найбільшу мілітарі - бібліотеку на ентузіазмі і бажанні популяризувати військову літературу та підвищити нашу з вами ефективність у боротьбі з московитським окупантом.
-    </p>
-    <p>
-        <a href = https://t.me/nation_lit02>
-            Зворотній зв’язок
-        </a>
-    </p>
-    <p>
-        <a href = https://t.me/mil_lit_help>
-            Підтримати проєкт
-        </a>
-    </p>
+<div class="wr">
+    <div class="row">
+        <div class = "col-lg-8">
+            <h2 class="display-4 mb-3">Літературний клуб ML</h2>
+            <p style="max-width: 600px;">
+                Тематична література для підготовки і розширення спектру знань. Ми створили найбільшу мілітарі - бібліотеку на ентузіазмі і бажанні популяризувати військову літературу та підвищити нашу з вами ефективність у боротьбі з московитським окупантом.
+            </p>
+            <div class="card">
+                <ul class="list-group list-group-flush">
+                    <a href = https://t.me/nation_lit02 style="text-decoration: none;">
+                        <li class="list-group-item">
+                                <div style="color: #7e9ec3;">
+                                    Зворотній зв’язок
+                                </div>
+                        </li>
+                    </a>
 
-    <p>
-        <a href = https://www.instagram.com/military_literatures>
-            Instagram
-        </a>
-    </p>
+                    <a href = https://t.me/mil_lit_help style="text-decoration: none;">
+                        <li class="list-group-item">
+                                <div style="color: #7e9ec3;">
+                                    Підтримати проєкт
+                                </div>
+                        </li>
+                    </a>
 
-    <p>
-        <a href = https://t.me/mil_lit>
-            Telegram
-        </a>
-    </p>
-</div>
-<div class="row align-self-center">
-    <div class="col-12">
-        <div id="countByAuthorChart"></div>
+                    <a href = https://www.instagram.com/military_literatures style="text-decoration: none;">
+                        <li class="list-group-item">
+                                <div style="color: #7e9ec3;">
+                                    Instagram
+                                </div>
+                        </li>
+                    </a>
+
+                    <a href = https://t.me/mil_lit style="text-decoration: none;">
+                        <li class="list-group-item">
+                                <div style="color: #7e9ec3;">
+                                    Telegram
+                                </div>
+                        </li>
+                    </a>
+                </ul>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div id="BiggestTags"></div>
+        </div>
     </div>
 </div>
 @section Scripts
@@ -43,18 +58,18 @@
     google.charts.setOnLoadCallback(drawCharts);
     function drawCharts() 
     {
-        fetch('/api/charts/countByAuthor')
+        fetch('/api/charts/BiggestTags')
         .then(response => response.json())
         .then(data => 
         {
             const dataTable = new
             google.visualization.DataTable();
-            dataTable.addColumn('string', 'Автор');
+            dataTable.addColumn('string', 'Категорія');
             dataTable.addColumn('number', 'Кількість книг');
-            data.forEach(item => { dataTable.addRow([item.author, item.count]); });
+            data.forEach(item => { dataTable.addRow([item.tag, item.count]); });
             const options = 
             {
-                title: 'Автори з найбільшим доробком',
+                //title: 'Автори з найбільшим доробком',
                 titleTextStyle: 
                 {
                     color: "white",               // color 'red' or '#cc00cc'
@@ -63,29 +78,17 @@
                     bold: true,                 // true or false
                     italic: false                // true of false
                 },
-                width: 600,
-                height: 400,
+                width: 500,
+                height: 500,
                 backgroundColor: '#0b0c10',
-                legend: { position: 'none' },
+                //legend: { position: 'none' },
+                chartArea: {'width': '85%', 'height': '85%'},
+                legend: {'position': 'bottom', textStyle: {color: 'white'}}
             };
             const chart = new
-            google.visualization.ColumnChart(document.getElementById('countByAuthorChart'));
+            google.visualization.PieChart(document.getElementById('BiggestTags'));
             chart.draw(dataTable, options);
         });
     }
     </script>
 }
-@if(User.Identity.IsAuthenticated)
-{
-<p>@User.Identity.Name</p>
-
-<form method="post" asp-controller="Account" asp-action="Logout">
-    <input type="submit" value="Вихід" />
-</form>
-}
-else
-{
-<a asp-controller="Account" asp-action="Login">Вхід</a>
-<a asp-controller="Account" asp-action="Register">Реєстація</a>
-}
-

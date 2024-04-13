@@ -1,5 +1,7 @@
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> _signInManager
+@inject UserManager<User> _userManager
 @model IEnumerable<MIL_LIT.User>
-
 <p>
     <a asp-action="Create" class="btn btn-outline-success my-3">Додати користувача</a>
 </p>
@@ -17,6 +19,9 @@
             </th>
             <th>
                 Тип
+            </th>
+            <th>
+                Email
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.CreatedAt)
@@ -54,13 +59,20 @@
             <td>
                 @Html.DisplayFor(modelItem => item.PasswordHash)
             </td>
-            @if(item.IsAdmin)
+            @if((await _userManager.GetRolesAsync(item)).Contains("admin"))
             {
                 <td>Адміністратор</td>
+            } else
+            if((await _userManager.GetRolesAsync(item)).Contains("moderator"))
+            {
+                <td>Модератор</td>
             } else
             {
                 <td>Користувач</td>
             }
+            <td>
+                @item.Email
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CreatedAt)
             </td>

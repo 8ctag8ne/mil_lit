@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +11,7 @@ using MIL_LIT;
 
 namespace MIL_LIT.Controllers_
 {
+    [Authorize]
     public class CommentController : Controller
     {
         private readonly MilLitDbContext _context;
@@ -87,10 +90,18 @@ namespace MIL_LIT.Controllers_
             {
                 return NotFound();
             }
+
+
             ViewData["BookId"] = new SelectList(_context.Books, "BookId", "BookId", comment.BookId);
             ViewData["ParentCommentId"] = new SelectList(_context.Comments, "CommentId", "CommentId", comment.ParentCommentId);
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Login", comment.UserId);
-            return View(comment);
+            if(Convert.ToString(comment.UserId) == User.FindFirstValue(ClaimTypes.NameIdentifier) || 
+            User.IsInRole("admin") || 
+            User.IsInRole("moderator"))
+            {
+                return View(comment);
+            }
+            return RedirectToAction("Index", "Home");
         }
 
         // POST: Comment/Edit/5
@@ -103,6 +114,13 @@ namespace MIL_LIT.Controllers_
             if (id != comment.CommentId)
             {
                 return NotFound();
+            }
+
+            if(Convert.ToString(comment.UserId) != User.FindFirstValue(ClaimTypes.NameIdentifier) && 
+            !User.IsInRole("admin") && 
+            !User.IsInRole("moderator"))
+            {
+                return RedirectToAction("Index", "Home");
             }
 
             if (ModelState.IsValid)
@@ -149,7 +167,13 @@ namespace MIL_LIT.Controllers_
                 return NotFound();
             }
 
-            return View(comment);
+            if(Convert.ToString(comment.UserId) == User.FindFirstValue(ClaimTypes.NameIdentifier) || 
+            User.IsInRole("admin") || 
+            User.IsInRole("moderator"))
+            {
+                return View(comment);
+            }
+            return RedirectToAction("Index", "Home");
         }
 
         // POST: Comment/Delete/5
@@ -158,6 +182,15 @@ namespace MIL_LIT.Controllers_
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var comment = await _context.Comments.FindAsync(id);
+
+            if(Convert.ToString(comment?.UserId) != User.FindFirstValue(ClaimTypes.NameIdentifier) && 
+            !User.IsInRole("admin") && 
+            !User.IsInRole("moderator"))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            
             if (comment != null)
             {
                 _context.Comments.Remove(comment);

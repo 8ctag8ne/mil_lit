@@ -112,6 +112,38 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\books\coverfd1b851b-9026-4319-88c7-c05762709f02_NAZITSYPKO.png))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\books\covers\18f6a7af-e1ed-4fa4-b7a1-caef250519d6_df2926571ab9941c5be2aa1c33537a59.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>MIL_LIT</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/MIL_LIT</BasePath>
+      <RelativePath>books/covers/18f6a7af-e1ed-4fa4-b7a1-caef250519d6_df2926571ab9941c5be2aa1c33537a59.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\books\covers\18f6a7af-e1ed-4fa4-b7a1-caef250519d6_df2926571ab9941c5be2aa1c33537a59.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\books\covers\1feaeff6-86a3-480f-a16b-72d3e1d973ae_image_2024-04-13_04-14-08.png))">
+      <SourceType>Package</SourceType>
+      <SourceId>MIL_LIT</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/MIL_LIT</BasePath>
+      <RelativePath>books/covers/1feaeff6-86a3-480f-a16b-72d3e1d973ae_image_2024-04-13_04-14-08.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\books\covers\1feaeff6-86a3-480f-a16b-72d3e1d973ae_image_2024-04-13_04-14-08.png))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\books\covers\316bc16f-b58a-4bd2-81e1-331e3f1786fa_photo_2022-02-08_13-59-18.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>MIL_LIT</SourceId>
@@ -127,6 +159,54 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\books\covers\316bc16f-b58a-4bd2-81e1-331e3f1786fa_photo_2022-02-08_13-59-18.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\books\covers\3ab5c755-b232-453f-a73d-aac25c2d3e7c_photo_2024-04-13_03-06-29.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>MIL_LIT</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/MIL_LIT</BasePath>
+      <RelativePath>books/covers/3ab5c755-b232-453f-a73d-aac25c2d3e7c_photo_2024-04-13_03-06-29.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\books\covers\3ab5c755-b232-453f-a73d-aac25c2d3e7c_photo_2024-04-13_03-06-29.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\books\covers\4bb2ae4b-1cc6-4146-86d2-d37015bb0358_image_2024-04-07_23-38-41.png))">
+      <SourceType>Package</SourceType>
+      <SourceId>MIL_LIT</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/MIL_LIT</BasePath>
+      <RelativePath>books/covers/4bb2ae4b-1cc6-4146-86d2-d37015bb0358_image_2024-04-07_23-38-41.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\books\covers\4bb2ae4b-1cc6-4146-86d2-d37015bb0358_image_2024-04-07_23-38-41.png))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\books\covers\569ed9c8-bd0f-4768-b315-0f7bdc95d229_1709976413.webp))">
+      <SourceType>Package</SourceType>
+      <SourceId>MIL_LIT</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/MIL_LIT</BasePath>
+      <RelativePath>books/covers/569ed9c8-bd0f-4768-b315-0f7bdc95d229_1709976413.webp</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\books\covers\569ed9c8-bd0f-4768-b315-0f7bdc95d229_1709976413.webp))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\books\covers\870a1f19-d320-40c9-9f17-af3802e883d6_image_2024-04-05_03-07-23.png))">
       <SourceType>Package</SourceType>
@@ -159,6 +239,22 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\books\covers\9f3bba61-fbd9-45dc-9019-a57493c395a0_ukrainiannazicolaborant(бандерівець).png))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\books\covers\b80ed7bc-e4a3-4fc3-b8b3-09eeb9feb8c9_Націоналізм_(Книга).jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>MIL_LIT</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/MIL_LIT</BasePath>
+      <RelativePath>books/covers/b80ed7bc-e4a3-4fc3-b8b3-09eeb9feb8c9_Націоналізм_(Книга).jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\books\covers\b80ed7bc-e4a3-4fc3-b8b3-09eeb9feb8c9_Націоналізм_(Книга).jpg))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\css\site.css))">
       <SourceType>Package</SourceType>
@@ -1264,6 +1360,22 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\resources\WhiteLogo.png))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\tags\covers\172b4c4c-bc17-4bf2-b267-7e12db5e1de1_photo_2022-04-12_11-19-20.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>MIL_LIT</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/MIL_LIT</BasePath>
+      <RelativePath>tags/covers/172b4c4c-bc17-4bf2-b267-7e12db5e1de1_photo_2022-04-12_11-19-20.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\tags\covers\172b4c4c-bc17-4bf2-b267-7e12db5e1de1_photo_2022-04-12_11-19-20.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\tags\covers\1aae1253-388e-452f-89c7-3e2aec03ab7b_16550919-pack_xl.webp))">
       <SourceType>Package</SourceType>
       <SourceId>MIL_LIT</SourceId>
@@ -1279,6 +1391,38 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\tags\covers\1aae1253-388e-452f-89c7-3e2aec03ab7b_16550919-pack_xl.webp))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\tags\covers\9517a4de-adf5-495d-bd7f-a60b06c43b7e_AllBooks.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>MIL_LIT</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/MIL_LIT</BasePath>
+      <RelativePath>tags/covers/9517a4de-adf5-495d-bd7f-a60b06c43b7e_AllBooks.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\tags\covers\9517a4de-adf5-495d-bd7f-a60b06c43b7e_AllBooks.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\tags\covers\956080a0-cc7d-4232-9240-5651c6485004_photo_2023-04-06_19-07-01.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>MIL_LIT</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/MIL_LIT</BasePath>
+      <RelativePath>tags/covers/956080a0-cc7d-4232-9240-5651c6485004_photo_2023-04-06_19-07-01.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\tags\covers\956080a0-cc7d-4232-9240-5651c6485004_photo_2023-04-06_19-07-01.jpg))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\tags\covers\9edcb4ec-1012-4fe0-b588-bfb2ad2db212_iAPRudV.png))">
       <SourceType>Package</SourceType>
@@ -1296,6 +1440,70 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\tags\covers\9edcb4ec-1012-4fe0-b588-bfb2ad2db212_iAPRudV.png))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\tags\covers\adbf9f02-bae2-4dd0-8407-03f04420ec6d_photo_2024-02-26_21-17-22.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>MIL_LIT</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/MIL_LIT</BasePath>
+      <RelativePath>tags/covers/adbf9f02-bae2-4dd0-8407-03f04420ec6d_photo_2024-02-26_21-17-22.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\tags\covers\adbf9f02-bae2-4dd0-8407-03f04420ec6d_photo_2024-02-26_21-17-22.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\tags\covers\d268047d-e48c-4dfd-949d-5998b5a36d62_4285eb25e37cb371.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>MIL_LIT</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/MIL_LIT</BasePath>
+      <RelativePath>tags/covers/d268047d-e48c-4dfd-949d-5998b5a36d62_4285eb25e37cb371.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\tags\covers\d268047d-e48c-4dfd-949d-5998b5a36d62_4285eb25e37cb371.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\tags\covers\fdf41577-5b8e-40e7-a693-3fb70e5c1e9a_cotccc-logo-lg.png))">
+      <SourceType>Package</SourceType>
+      <SourceId>MIL_LIT</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/MIL_LIT</BasePath>
+      <RelativePath>tags/covers/fdf41577-5b8e-40e7-a693-3fb70e5c1e9a_cotccc-logo-lg.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\tags\covers\fdf41577-5b8e-40e7-a693-3fb70e5c1e9a_cotccc-logo-lg.png))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\users\covers\20985044-ce59-412b-8e01-6de66f3f7993_photo_2022-04-01_09-54-19.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>MIL_LIT</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/MIL_LIT</BasePath>
+      <RelativePath>users/covers/20985044-ce59-412b-8e01-6de66f3f7993_photo_2022-04-01_09-54-19.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\users\covers\20985044-ce59-412b-8e01-6de66f3f7993_photo_2022-04-01_09-54-19.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\users\covers\25e85b6b-7061-40b5-acc7-999c04f3f3de_110103787_1537151209789830_2664484084060252320_n.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>MIL_LIT</SourceId>
@@ -1312,6 +1520,38 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\users\covers\25e85b6b-7061-40b5-acc7-999c04f3f3de_110103787_1537151209789830_2664484084060252320_n.jpg))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\users\covers\29677854-9b86-4884-8f26-c61a6088993c_graph(1).png))">
+      <SourceType>Package</SourceType>
+      <SourceId>MIL_LIT</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/MIL_LIT</BasePath>
+      <RelativePath>users/covers/29677854-9b86-4884-8f26-c61a6088993c_graph(1).png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\users\covers\29677854-9b86-4884-8f26-c61a6088993c_graph(1).png))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\users\covers\35e39743-b7b2-4006-829c-072cfdcf9037_photo_2024-04-08_22-49-20.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>MIL_LIT</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/MIL_LIT</BasePath>
+      <RelativePath>users/covers/35e39743-b7b2-4006-829c-072cfdcf9037_photo_2024-04-08_22-49-20.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\users\covers\35e39743-b7b2-4006-829c-072cfdcf9037_photo_2024-04-08_22-49-20.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\users\covers\4947acf7-4e74-4284-b12a-2bd3edb80ffd_my_reaction.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>MIL_LIT</SourceId>
@@ -1327,6 +1567,54 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\users\covers\4947acf7-4e74-4284-b12a-2bd3edb80ffd_my_reaction.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\users\covers\53fea846-918e-40df-966a-df39bfb819f1_ChibiTohsaka.png))">
+      <SourceType>Package</SourceType>
+      <SourceId>MIL_LIT</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/MIL_LIT</BasePath>
+      <RelativePath>users/covers/53fea846-918e-40df-966a-df39bfb819f1_ChibiTohsaka.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\users\covers\53fea846-918e-40df-966a-df39bfb819f1_ChibiTohsaka.png))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\users\covers\613ef42c-ec93-4869-a567-20fb5c0f6a6c_photo_2022-04-01_09-54-19.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>MIL_LIT</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/MIL_LIT</BasePath>
+      <RelativePath>users/covers/613ef42c-ec93-4869-a567-20fb5c0f6a6c_photo_2022-04-01_09-54-19.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\users\covers\613ef42c-ec93-4869-a567-20fb5c0f6a6c_photo_2022-04-01_09-54-19.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\users\covers\6a622c39-f6e3-4310-9da1-1f14eb975a95_110103787_1537151209789830_2664484084060252320_n.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>MIL_LIT</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/MIL_LIT</BasePath>
+      <RelativePath>users/covers/6a622c39-f6e3-4310-9da1-1f14eb975a95_110103787_1537151209789830_2664484084060252320_n.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\users\covers\6a622c39-f6e3-4310-9da1-1f14eb975a95_110103787_1537151209789830_2664484084060252320_n.jpg))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\users\covers\6bf706f1-327f-4e79-abe2-6d34d0369a9f_110103787_1537151209789830_2664484084060252320_n.jpg))">
       <SourceType>Package</SourceType>
@@ -1375,6 +1663,70 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\users\covers\89c1cf9e-a301-4842-abbc-d7ec7da26e60_photo_2024-01-23_22-12-58.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\users\covers\93b1f206-a20c-4ef4-9a62-3904e22cce4a_photo_2022-04-01_09-54-19.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>MIL_LIT</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/MIL_LIT</BasePath>
+      <RelativePath>users/covers/93b1f206-a20c-4ef4-9a62-3904e22cce4a_photo_2022-04-01_09-54-19.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\users\covers\93b1f206-a20c-4ef4-9a62-3904e22cce4a_photo_2022-04-01_09-54-19.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\users\covers\a6037570-aab9-4833-ac12-b4d14fc0b0e3_NU5Ug_tS-9I.png))">
+      <SourceType>Package</SourceType>
+      <SourceId>MIL_LIT</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/MIL_LIT</BasePath>
+      <RelativePath>users/covers/a6037570-aab9-4833-ac12-b4d14fc0b0e3_NU5Ug_tS-9I.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\users\covers\a6037570-aab9-4833-ac12-b4d14fc0b0e3_NU5Ug_tS-9I.png))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\users\covers\d351afbb-9f4d-4c34-849e-136ef9fe398f_klipartz.com.png))">
+      <SourceType>Package</SourceType>
+      <SourceId>MIL_LIT</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/MIL_LIT</BasePath>
+      <RelativePath>users/covers/d351afbb-9f4d-4c34-849e-136ef9fe398f_klipartz.com.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\users\covers\d351afbb-9f4d-4c34-849e-136ef9fe398f_klipartz.com.png))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\users\covers\d6bf3200-dcb2-47fc-8b5e-e6362d0f5a6c_photo_2024-04-11_04-00-12.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>MIL_LIT</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/MIL_LIT</BasePath>
+      <RelativePath>users/covers/d6bf3200-dcb2-47fc-8b5e-e6362d0f5a6c_photo_2024-04-11_04-00-12.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\users\covers\d6bf3200-dcb2-47fc-8b5e-e6362d0f5a6c_photo_2024-04-11_04-00-12.jpg))</OriginalItemSpec>
     </StaticWebAsset>
   </ItemGroup>
 </Project>

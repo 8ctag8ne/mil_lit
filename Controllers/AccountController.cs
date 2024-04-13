@@ -27,10 +27,10 @@ namespace MIL_LIT.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    User user = new User { Login = model.Email, 
+                    User user = new User { Login = model.Login, 
                                             PasswordHash = model.Password, 
                                             Email = model.Email, 
-                                            UserName = model.Email, 
+                                            UserName = model.Login, 
                                             IsAdmin = false,
                                             CreatedAt = DateTime.UtcNow};
                     // додаємо користувача
@@ -79,7 +79,7 @@ namespace MIL_LIT.Controllers
                             return RedirectToAction("Index", "Tag");
                         }
                     }
-                    var result = await _signInManager.PasswordSignInAsync(user.UserName, model.Password, model.RememberMe, false);
+                    /*var result = await _signInManager.PasswordSignInAsync(user.UserName, model.Password, model.RememberMe, false);
                     if (result.Succeeded)
                     {
                         // перевіряємо, чи належить URL додатку
@@ -91,7 +91,7 @@ namespace MIL_LIT.Controllers
                         {
                             return RedirectToAction("Index", "Tag");
                         }
-                    }
+                    }*/
                     else
                     {
                         ModelState.AddModelError("", "Неправильний логін чи (та) пароль");

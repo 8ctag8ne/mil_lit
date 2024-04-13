@@ -7,16 +7,20 @@ namespace MIL_LIT.ViewModel
         [Required]
         [Display(Name ="Email")]
         [DataType(DataType.EmailAddress)]
-        public string Email {get; set; }
+        public string Email {get; set; } = null!;
+
+        [Required]
+        [Display(Name ="Логін")]
+        public string Login {get; set;} = null!;
         
         [Required]
         [Display(Name ="Пароль")]
-        public string Password {get; set;}
+        public string Password {get; set;} = null!;
 
         [Required]
         [Compare("Password", ErrorMessage = "Паролі не збігаються")]
         [Display(Name = "Підтвердження паролю")]
         [DataType(DataType.Password)]
-        public string PasswordConfirm {get; set;}
+        public string PasswordConfirm {get; set;} = null!;
     }
 }

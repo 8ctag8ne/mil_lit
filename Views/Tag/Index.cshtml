@@ -13,9 +13,12 @@
     <div class="col-lg-2 ">
         <a asp-action="Index" class="btn btn-outline-secondary d-flex text-center mb-3" >Усі категорії</a>
     </div>
-    <div class="col-lg-2">
-        <a asp-action="Create" class = "btn btn-outline-success d-flex text-center mb-3">Додати нову категорію</a>
-    </div>
+    @if(User.IsInRole("admin") || User.IsInRole("moderator"))
+    {
+        <div class="col-lg-2">
+            <a asp-action="Create" class = "btn btn-outline-success d-flex text-center mb-3">Додати нову категорію</a>
+        </div>
+    }
 </div>
 
 @foreach (var item in Model) {
@@ -25,7 +28,7 @@
                 @if(item.CoverImage != null)
                 {
                     <a asp-action="Details" asp-route-id="@item.TagId">
-                    <img class="card-img fit-image" style="max-height: 160px; padding: 0; margin: 0;"
+                    <img class="card-img" style="height: 160px; padding: 0; margin: 0;"
                     src = @item.CoverImage
                     alt = "Нема хліба, нема сала, Калі - Юга все забрала"
                     />
@@ -33,7 +36,7 @@
                 } else
                 {
                     <a asp-action="Details" asp-route-id="@item.TagId">
-                    <img  class="card-img fit-image" style="max-height: 160px; padding: 0; margin: 0;"
+                    <img  class="card-img" style="max-height: 160px; padding: 0; margin: 0;"
                     src = "~/resources/NoImage.png"
                     alt = "Нема хліба, нема сала, Калі - Юга все забрала"
                     />
@@ -63,13 +66,16 @@
             </div>
             <div class="col-sm-2 align-self-center">
                 <div class="row">
-                    <div class = "col-lg-4 text-center d-flex">
-                        <a asp-action="Edit" asp-route-id="@item.TagId" style="text-decoration:none">
-                            <button class="btn btn-outline-warning">
-                                        <i class="bi bi-pencil-square"></i>
-                            </button>
-                        </a>
-                    </div>
+                    @if(User.IsInRole("admin") || User.IsInRole("moderator"))
+                    {
+                        <div class = "col-lg-4 text-center d-flex">
+                            <a asp-action="Edit" asp-route-id="@item.TagId" style="text-decoration:none">
+                                <button class="btn btn-outline-warning">
+                                            <i class="bi bi-pencil-square"></i>
+                                </button>
+                            </a>
+                        </div>
+                    }
                     <div class = "col-lg-4 text-center d-flex">
                         <a asp-action="Details" asp-route-id="@item.TagId" style="text-decoration:none">
                             <button class="btn btn-outline-success">
@@ -77,13 +83,16 @@
                             </button>
                         </a>
                     </div>
-                    <div class = "col-lg-4 text-center d-flex">
-                        <a asp-action="Delete" asp-route-id="@item.TagId" style="text-decoration:none">
-                            <button class="btn btn-outline-danger">
-                               <i class="bi bi-trash-fill"></i>
-                            </button>
-                        </a>
-                    </div>
+                    @if(User.IsInRole("admin") || User.IsInRole("moderator"))
+                    {
+                        <div class = "col-lg-4 text-center d-flex">
+                            <a asp-action="Delete" asp-route-id="@item.TagId" style="text-decoration:none">
+                                <button class="btn btn-outline-danger">
+                                <i class="bi bi-trash-fill"></i>
+                                </button>
+                            </a>
+                        </div>
+                    }
                 </div>
             </div>
         </div>

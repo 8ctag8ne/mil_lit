@@ -7,6 +7,7 @@
     IEnumerable<Tag> Tags = ViewData["Tags"] as IEnumerable<Tag>;
     IEnumerable<MIL_LIT.Comment> Comments = ViewData["Comments"] as IEnumerable<MIL_LIT.Comment>;
     string DownloadLink = ViewData["DownloadLink"] as string;
+    bool IsLiked = (bool)ViewData["IsLiked"];
 }
 <div class="wr">
     <h4>@Model.Name</h4>
@@ -32,7 +33,7 @@
                 }
         </div>
         <div class="col-sm-9">
-            <table class="table wr">
+            <table class="table wr" aria-describedby="Інформація про книгу">
                 <tbody>
                     <tr>
                         <th scope="row">Назва:</th>
@@ -95,38 +96,44 @@
             </a>
         </div>
     </div>
-    <div class="row">
-        <div class="col-lg-3 d-flex">
-                <button class="btn btn-outline-danger w-100 mb-2 bi-heart" data-toggle="button" aria-pressed="false" onclick="myFunction(this)">
-                    <!--<i class="bi bi-heart"></i>-->
-                </button>
+        <div class="row">
+            <div class="col-lg-3 d-flex">
+                @if(IsLiked)
+                {
+                    <button class="btn btn-outline-danger w-100 mb-2 bi-heart-fill" data-toggle="button" aria-pressed="false" 
+                    onclick="myFunction(this, @Model.BookId, @_userManager.GetUserId(User))" data-likes="@Model.Likes">
+                    @Model.Likes
+                    </button>
+                } else
+                {
+                    <button class="btn btn-outline-danger w-100 mb-2 bi-heart" data-toggle="button" aria-pressed="false" 
+                    onclick="myFunction(this, @Model.BookId, @_userManager.GetUserId(User))" 
+                    data-likes="@Model.Likes" disabled="@(!User.Identity.IsAuthenticated)">
+                    @Model.Likes
+                    </button>
+                }
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-3 d-flex">
-            <a href=@DownloadLink class="btn btn-outline-info w-100 mb-2">
-                    <i class="bi bi-download"></i>
-            </a>
+    @if(User.Identity.IsAuthenticated)
+    {
+        <div class="row">
+            <div class="col-lg-3 d-flex">
+                <a href=@DownloadLink class="w-100">
+                    <button class="btn btn-outline-info w-100 mb-2 bi-download" data-toggle="button" aria-pressed="false" 
+                        onclick="SaveFunction(this, @Model.BookId, @_userManager.GetUserId(User))" 
+                        data-saves="@Model.Saves">
+                        @Model.Saves
+                    </button>
+                </a>
+            </div>
         </div>
-    </div>
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Likes)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Likes)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Saves)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Saves)
-        </dd>
-    </dl>
-    
+    }
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.BookId" class="btn btn-outline-warning me-3 my-3">Редагувати</a>
+    @if(User.IsInRole("admin") || User.IsInRole("moderator"))
+    {
+        <a asp-action="Edit" asp-route-id="@Model?.BookId" class="btn btn-outline-warning me-3 my-3">Редагувати</a>
+    }
     <a asp-action="Index" class="btn btn-outline-secondary my-3">Повернутися до списку книг</a>
 </div>
 @if(User.Identity.IsAuthenticated)
@@ -135,11 +142,9 @@
         <div class="form-group">
             <label class="control-label wr">Ваш коментар:</label>
             <textarea name="Text" id="output" class="form-control commentinput"></textarea>
-            <!--<span asp-validation-for="Text" class="text-danger"></span>-->
         </div>
         <input name="UserId" value="@_userManager.GetUserId(User)" readonly hidden/>
         <input asp-for="BookId" value="@Model.BookId" readonly hidden/>
-        <!--<span asp-validation-for="BookId" class="text-danger"></span>-->
         <div class="form-group my-3">
             <input type="submit" value="Додати коментар" class="btn btn-outline-info" />
         </div>
@@ -157,34 +162,45 @@ else
 @if(Comments != null && Comments.Count() > 0)
 {
     <h5 class="wr"><p>Коментарі:</p></h5>
-    <table class="table wr">
+    <table class="table wr" aria-describedby="Список коментарів">
             <tbody>
                 @foreach(var comment in Comments)
                 {
                     <tr>
-                        <td>
-                            @comment.User.Login
+                        @if(comment.User != null)
+                        {
+                            <td>
+                                @comment.User.Login
                         </td>
+                        } else
+                        {
+                            <td>
+                                Користувач видалений
+                            </td>
+                        }
                         <td>
                             @comment.Text
                         </td>
                         <td>
+                            @if(User.IsInRole("admin") || User.IsInRole("moderator") || _userManager.GetUserId(User) == Convert.ToString(comment.UserId))
+                            {
                                 <a asp-action="Edit" asp-controller="Comment" asp-route-id="@comment.CommentId" style="text-decoration:none">
                                     <button class="btn btn-outline-warning mb-2 me-2">
                                         <i class="bi bi-pencil-square"></i>
                                     </button>
                                 </a>
-                                <a asp-action="Details" asp-controller="Comment" asp-route-id="@comment.CommentId" style="text-decoration:none">
+                                @* <a asp-action="Details" asp-controller="Comment" asp-route-id="@comment.CommentId" style="text-decoration:none">
                                     <button class="btn btn-outline-success mb-2 me-2">
                                         <i class="bi bi-arrows-fullscreen"></i>
                                     </button>
-                                </a>
+                                </a> *@
                             
                                 <a asp-action="Delete" asp-controller="Comment" asp-route-id="@comment.CommentId" style="text-decoration:none">
                                     <button class="btn btn-outline-danger mb-2 me-2">
                                         <i class="bi bi-trash-fill"></i>
                                     </button>
                                 </a>
+                            }
                         </td>
                     </tr>
                 }
@@ -193,16 +209,77 @@ else
 }
 
 <script>
-    function myFunction(x) {
-        if(x.classList.contains("bi-heart"))
-        {
-            x.classList.remove("bi-heart");
-            x.classList.add("bi-heart-fill");
-        } else
-        {
-            x.classList.remove("bi-heart-fill");
-            x.classList.add("bi-heart");
-        }
-  //x.classList.toggle("btn-danger");
-}
+    function myFunction(x, bookId, userId) 
+    {
+        console.log("myFunction called with bookId:", bookId, "and userId:", userId);
+        $.ajax({
+            type: "POST",
+            url: "/Book/LikeAction",
+            data: { BookId: bookId, UserId: userId },
+            success: function (response) {
+                // Update UI if necessary
+                if (response.success) 
+                {
+                    var likesCount = parseInt(x.getAttribute("data-likes"));
+                    if(x.classList.contains("bi-heart"))
+                    {
+                        x.classList.remove("bi-heart");
+                        x.classList.add("bi-heart-fill");
+                        likesCount++;
+                    } else
+                    {
+                        x.classList.remove("bi-heart-fill");
+                        x.classList.add("bi-heart");
+                        likesCount--;
+                    }
+                    x.setAttribute("data-likes", likesCount);
+                    x.textContent = " "+likesCount;
+                } 
+                else 
+                {
+                    // Like action failed
+                    // Handle error if needed
+                }
+            },
+            error: function (xhr, status, error) 
+            {
+                // Handle error if AJAX request fails
+                console.error("AJAX error:", error);
+                // Optionally, display an error message to the user
+                alert("An error occurred while processing your request. Please try again later.");
+            }
+        });
+    }
+
+    function SaveFunction(x, bookId, userId) 
+    {
+        console.log("SaveFunction called with bookId:", bookId, "and userId:", userId);
+        $.ajax({
+            type: "POST",
+            url: "/Book/SaveAction",
+            data: { BookId: bookId, UserId: userId },
+            success: function (response) {
+                // Update UI if necessary
+                if (response.success) 
+                {
+                    var SavesCount = parseInt(x.getAttribute("data-saves"));
+                    SavesCount++;
+                    x.setAttribute("data-saves", SavesCount);
+                    x.textContent = " "+SavesCount;
+                } 
+                else
+                {
+                    // Like action failed
+                    // Handle error if needed
+                }
+            },
+            error: function (xhr, status, error) 
+            {
+                // Handle error if AJAX request fails
+                console.error("AJAX error:", error);
+                // Optionally, display an error message to the user
+                alert("An error occurred while processing your request. Please try again later.");
+            }
+        });
+    }
 </script>

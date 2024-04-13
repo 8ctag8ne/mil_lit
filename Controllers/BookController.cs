@@ -10,6 +10,9 @@ using System.Text.Json.Serialization;
 using Microsoft.Extensions.Logging;
 using MIL_LIT;
 using Microsoft.EntityFrameworkCore.Query.Internal;
+using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MIL_LIT.Controllers_
 {
@@ -17,10 +20,15 @@ namespace MIL_LIT.Controllers_
     {
         private readonly MilLitDbContext _context;
         private readonly IWebHostEnvironment _webHostEnvironment;
-        public BookController(MilLitDbContext context, IWebHostEnvironment webHostEnvironment)
+
+        private readonly SignInManager<User> _signInManager;
+        private readonly UserManager<User> _userManager;
+        public BookController(MilLitDbContext context, IWebHostEnvironment webHostEnvironment, UserManager<User> userManager, SignInManager<User> signInManager)
         {
             _context = context;
             _webHostEnvironment = webHostEnvironment;
+            _userManager = userManager;
+            _signInManager = signInManager;
         }
 
         // GET: Book
@@ -53,6 +61,8 @@ namespace MIL_LIT.Controllers_
             {
                 return NotFound();
             }
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var Liked = await _context.Likes.FirstOrDefaultAsync(lk => Convert.ToString(lk.UserId) == userId  && lk.BookId == book.BookId);
             var TagList = await _context.BookTags.Where(b => b.BookId == book.BookId).Select(t=>t.TagId).ToListAsync();
             var Tags = _context.Tags.Where(t => TagList.Contains(t.TagId)).Include(t => t.CreatedByNavigation).Include(t => t.ParentTag);
             var BookComments = _context.Comments.Where(c=>c.BookId == book.BookId).Include(c=>c.User);
@@ -61,10 +71,12 @@ namespace MIL_LIT.Controllers_
             ViewData["Comments"] = BookComments;
             ViewData["DownloadLink"] = DownloadLink;
             ViewData["Users"] = new SelectList(_context.Users.ToList(), "Id", "Login");
+            ViewData["IsLiked"] = Liked != null ? true : false;
             return View(book);
         }
 
         // GET: Book/Create
+        [Authorize(Roles = "admin,moderator")]
         public IActionResult Create()
         {
             ViewData["CreatedBy"] = new SelectList(_context.Users.Where(user=>user.IsAdmin), "Id", "Login");
@@ -77,6 +89,7 @@ namespace MIL_LIT.Controllers_
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "moderator,admin")]
         public async Task<IActionResult> Create([Bind("Name,BookId,CreatedBy,SourceLink,Filepath,GeneralInfo,Author,CoverLink,TagIds,CoverFile")] Book book)
         {
             if(_context.Books.Any(b=>b.Name == book.Name && b.BookId!=book.BookId))
@@ -122,6 +135,7 @@ namespace MIL_LIT.Controllers_
         }
 
         // GET: Book/Edit/5
+        [Authorize(Roles = "moderator,admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -146,6 +160,7 @@ namespace MIL_LIT.Controllers_
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "moderator,admin")]
         public async Task<IActionResult> Edit(int id, [Bind("Name,BookId,CreatedBy,Likes,Saves,CreatedAt,SourceLink,Filepath,GeneralInfo,Author,CoverLink,TagIds,CoverFile")] Book book)
         {
             if (id != book.BookId)
@@ -213,6 +228,7 @@ namespace MIL_LIT.Controllers_
         }
 
         // GET: Book/Delete/5
+        [Authorize(Roles = "moderator,admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -237,6 +253,7 @@ namespace MIL_LIT.Controllers_
         // POST: Book/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "moderator,admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var book = await _context.Books.FindAsync(id);
@@ -270,6 +287,54 @@ namespace MIL_LIT.Controllers_
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> LikeAction(int BookId, int UserId)
+        {
+            var like  = await _context.Likes.FirstOrDefaultAsync(like => like.BookId == BookId && like.UserId == UserId);
+            var book = await _context.Books.FirstOrDefaultAsync(b => b.BookId == BookId);
+            if(book != null && like != null)
+            {
+                book.Likes--;
+                _context.Likes.Remove(like);
+            }
+            else if(book!= null && like == null)
+            {
+                book.Likes++;
+                var AddLike = new Like();
+                AddLike.BookId = BookId;
+                AddLike.UserId = UserId;
+                AddLike.User = await _userManager.FindByIdAsync(Convert.ToString(UserId));
+                AddLike.Book = book;
+                await _context.Likes.AddAsync(AddLike);
+            }
+            await _context.SaveChangesAsync();
+            return Json(new { success = true });
+        }
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> SaveAction(int BookId, int UserId)
+        {
+            var book = await _context.Books.FirstOrDefaultAsync(b=>b.BookId == BookId);
+            var save = await _context.Saves.FirstOrDefaultAsync(s => s.BookId == BookId && s.UserId == UserId);
+            if(book != null)
+            {
+                book.Saves++;
+                if(save == null)
+                {
+                    var AddSave = new Safe();
+                    AddSave.BookId = BookId;
+                    AddSave.UserId = UserId;
+                    AddSave.User = await _userManager.FindByIdAsync(Convert.ToString(UserId));
+                    AddSave.Book = book;
+                    await _context.Saves.AddAsync(AddSave);
+                }
+                await _context.SaveChangesAsync();
+                return Json(new { success = true });
+            }
+            return Json(new { success = false });
         }
 
         private bool BookExists(int id)

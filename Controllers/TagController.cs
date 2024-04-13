@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -81,6 +82,7 @@ namespace MIL_LIT.Controllers_
         }
 
         // GET: Tag/Create
+        [Authorize(Roles = "moderator,admin")]
         public IActionResult Create()
         {
             ViewData["CreatedBy"] = new SelectList(_context.Users.Where(t => t.IsAdmin), "Id", "Login");
@@ -93,6 +95,7 @@ namespace MIL_LIT.Controllers_
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "moderator,admin")]
         public async Task<IActionResult> Create([Bind("TagId,Name,CreatedBy,CoverImage,ParentTagId,CoverFile")] Tag tag)
         {
             if(_context.Tags.Any(t => t.Name == tag.Name && t.TagId!=tag.TagId))
@@ -121,6 +124,7 @@ namespace MIL_LIT.Controllers_
         }
 
         // GET: Tag/Edit/5
+        [Authorize(Roles = "moderator,admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -143,6 +147,7 @@ namespace MIL_LIT.Controllers_
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "moderator,admin")]
         public async Task<IActionResult> Edit(int id, [Bind("TagId,Name,CreatedBy,CoverImage,CreatedAt,ParentTagId,CoverFile")] Tag tag)
         {
             if (id != tag.TagId)
@@ -189,6 +194,7 @@ namespace MIL_LIT.Controllers_
         }
 
         // GET: Tag/Delete/5
+        [Authorize(Roles = "moderator,admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -211,6 +217,7 @@ namespace MIL_LIT.Controllers_
         // POST: Tag/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "moderator,admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var tag = await _context.Tags.FindAsync(id);
