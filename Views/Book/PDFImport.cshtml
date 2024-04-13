@@ -1,0 +1,23 @@
+
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> _signInManager
+@inject UserManager<User> _userManager 
+
+
+<h4 class="wr">Імпортувати книгу</h4>
+<hr />
+<div class="row wr">
+    <div class="col-md-4">
+        <form asp-action="PDFImport" enctype="multipart/form-data">
+            <div class="form-group mb-2">
+                <label name="File" for="formFile" class="form-label">Оберіть PDF - файл</label>
+                <input name="File" class="form-control" type="file" id="formFile" accept="application/pdf">
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Завантажити" class="btn btn-outline-success me-3 my-3" />
+                <a asp-action="Index" class="btn btn-outline-secondary my-3">Повернутися</a>
+            </div>
+        </form>
+    </div>
+</div>

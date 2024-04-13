@@ -13,6 +13,8 @@ using Microsoft.EntityFrameworkCore.Query.Internal;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
+using MIL_LIT.PDFModels;
+using ImageMagick;
 
 namespace MIL_LIT.Controllers_
 {
@@ -66,10 +68,13 @@ namespace MIL_LIT.Controllers_
             var TagList = await _context.BookTags.Where(b => b.BookId == book.BookId).Select(t=>t.TagId).ToListAsync();
             var Tags = _context.Tags.Where(t => TagList.Contains(t.TagId)).Include(t => t.CreatedByNavigation).Include(t => t.ParentTag);
             var BookComments = _context.Comments.Where(c=>c.BookId == book.BookId).Include(c=>c.User);
-            string DownloadLink = "https://drive.usercontent.google.com/uc?id="+book.SourceLink.Split("/", StringSplitOptions.RemoveEmptyEntries)[4]+"&export=download";
+            if(book.SourceLink.Contains("drive.google.com"))
+            {
+                string DownloadLink = "https://drive.usercontent.google.com/uc?id="+book.SourceLink.Split("/", StringSplitOptions.RemoveEmptyEntries)[4]+"&export=download";
+                ViewData["DownloadLink"] = DownloadLink;
+            }
             ViewData["Tags"] = Tags;
             ViewData["Comments"] = BookComments;
-            ViewData["DownloadLink"] = DownloadLink;
             ViewData["Users"] = new SelectList(_context.Users.ToList(), "Id", "Login");
             ViewData["IsLiked"] = Liked != null ? true : false;
             return View(book);
@@ -79,8 +84,18 @@ namespace MIL_LIT.Controllers_
         [Authorize(Roles = "admin,moderator")]
         public IActionResult Create()
         {
+            
             ViewData["CreatedBy"] = new SelectList(_context.Users.Where(user=>user.IsAdmin), "Id", "Login");
             ViewData["AllTags"] = new MultiSelectList(_context.Tags, "TagId", "Name");
+
+            if (TempData["Book"] != null)
+            {
+                // Deserialize the book object from TempData
+                Book book = JsonSerializer.Deserialize<Book>((string)TempData["Book"]);
+                TempData.Remove("Book");
+                return View(book);
+                // Use the book object...
+            }
             return View();
         }
 
@@ -132,6 +147,60 @@ namespace MIL_LIT.Controllers_
             ViewData["CreatedBy"] = new SelectList(_context.Users, "Id", "Login", book.CreatedBy);
             ViewData["AllTags"] = new MultiSelectList(_context.Tags, "TagId", "Name");
             return View(book);
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "admin,moderator")]
+        public IActionResult PDFImport()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "moderator,admin")]
+        public async Task<IActionResult> PDFImport(IFormFile? File)
+        {
+            if(File == null)
+            {
+                return View(File);
+            }
+            Book book = new Book();
+            string author = File.FileName.Split("(", StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)[^1][0..^5];
+            string name = string.Join('(', File.FileName.Split("(", StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)[0..^1]);
+            book.Name = name;
+            book.Author = author;
+            book.CreatedBy = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+            string folder = "books/PDFs/";
+            string FileNameWithoutSpaces = string.Join("", File.FileName.Split(" ", StringSplitOptions.RemoveEmptyEntries));
+            folder +=  Guid.NewGuid().ToString() + "_" + FileNameWithoutSpaces;
+            string ServerFolder = Path.Combine(_webHostEnvironment.WebRootPath, folder);
+            await using var fileStream = new FileStream(ServerFolder, FileMode.Create);
+            await File.CopyToAsync(fileStream);
+            book.SourceLink = "/"+folder;
+
+
+            using (MagickImageCollection images = new MagickImageCollection())
+            {
+                // Add all the pages of the pdf file to the collection
+                images.Read(ServerFolder);
+
+                // Create an image of the first page
+                MagickImage image = (MagickImage)images[0];
+
+                string ImageFolder = "books/covers/";
+                ImageFolder +=  Guid.NewGuid().ToString()+".jpg";
+                string ImageServerFolder = Path.Combine(_webHostEnvironment.WebRootPath, ImageFolder);
+
+                image.Write(ImageServerFolder);
+
+                // Store the path to the image in book.CoverLink
+                book.CoverLink = "/" + ImageFolder;
+            }
+
+            TempData["Book"] = JsonSerializer.Serialize(book);
+            return RedirectToAction("Create");
         }
 
         // GET: Book/Edit/5
@@ -332,6 +401,10 @@ namespace MIL_LIT.Controllers_
                     await _context.Saves.AddAsync(AddSave);
                 }
                 await _context.SaveChangesAsync();
+                // if(!book.SourceLink.Contains("drive.google.com"))
+                // {
+                   
+                // }
                 return Json(new { success = true });
             }
             return Json(new { success = false });

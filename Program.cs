@@ -2,8 +2,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using MIL_LIT;
+using ImageMagick;
 
 var builder = WebApplication.CreateBuilder(args);
+
+MagickNET.SetGhostscriptDirectory(@"C:\Program Files\gs\gs10.03.0\bin");
+//MagickNET.SetTempDirectory("./TempFiles");
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

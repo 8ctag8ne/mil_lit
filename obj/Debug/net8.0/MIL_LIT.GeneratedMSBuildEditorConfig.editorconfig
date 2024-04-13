@@ -17,143 +17,147 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = MIL_LIT
 build_property.RootNamespace = MIL_LIT
-build_property.ProjectDir = c:\Users\nazar\OneDrive\Рабочий стол\унік\Прога\MIL_LIT\
+build_property.ProjectDir = C:\Users\nazar\OneDrive\Рабочий стол\унік\Прога\MIL_LIT\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = true
-build_property.MSBuildProjectDirectory = c:\Users\nazar\OneDrive\Рабочий стол\унік\Прога\MIL_LIT
+build_property.MSBuildProjectDirectory = C:\Users\nazar\OneDrive\Рабочий стол\унік\Прога\MIL_LIT
 build_property._RazorSourceGeneratorDebug = 
 
-[c:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/Account/Login.cshtml]
+[C:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/Account/Register.cshtml]
+[C:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/Account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/Book/Create.cshtml]
+[C:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/Book/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/Book/Delete.cshtml]
+[C:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/Book/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va1xEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/Book/Details.cshtml]
+[C:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/Book/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/Book/Edit.cshtml]
+[C:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/Book/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/Book/Index.cshtml]
+[C:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/Book/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/Comment/Create.cshtml]
+[C:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/Book/PDFImport.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va1xQREZJbXBvcnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/Comment/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tbWVudFxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/Comment/Delete.cshtml]
+[C:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/Comment/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tbWVudFxEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/Comment/Details.cshtml]
+[C:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/Comment/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tbWVudFxEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/Comment/Edit.cshtml]
+[C:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/Comment/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tbWVudFxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/Comment/Index.cshtml]
+[C:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/Comment/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tbWVudFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/Home/Index.cshtml]
+[C:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/Home/Privacy.cshtml]
+[C:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/Roles/Edit.cshtml]
+[C:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/Roles/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sZXNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/Roles/Index.cshtml]
+[C:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/Roles/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/Roles/UserList.cshtml]
+[C:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/Roles/UserList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sZXNcVXNlckxpc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/Shared/Error.cshtml]
+[C:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/Tag/Create.cshtml]
+[C:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/Tag/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFnXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/Tag/Delete.cshtml]
+[C:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/Tag/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFnXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/Tag/Details.cshtml]
+[C:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/Tag/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFnXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/Tag/Edit.cshtml]
+[C:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/Tag/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFnXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/Tag/Index for Tag.cshtml]
+[C:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/Tag/Index for Tag.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFnXEluZGV4IGZvciBUYWcuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/Tag/Index.cshtml]
+[C:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/Tag/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFnXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/User/Create.cshtml]
+[C:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/User/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/User/Delete.cshtml]
+[C:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/User/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/User/Details.cshtml]
+[C:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/User/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/User/Edit.cshtml]
+[C:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/User/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/User/Index.cshtml]
+[C:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/User/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/_ViewImports.cshtml]
+[C:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/_ViewStart.cshtml]
+[C:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/Shared/_Layout.cshtml]
+[C:/Users/nazar/OneDrive/Рабочий стол/унік/Прога/MIL_LIT/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-g651etxt7z
